@@ -33,8 +33,29 @@ RSpec.describe "Posts", type: :request do
       response_json =  json_body(response)
       expect(response_json['data']['body']).to eq("Test the encryption")
       expect(response).to have_http_status(200)
-    end
-    
+    end    
+  end
 
+
+  describe "show " do
+    before(:each) do
+      @post = create(:post)
+    end
+
+    it 'page exist' do
+      get '/v1/secret', params: {token: @post.url_token} 
+
+      response_json =  json_body(response)
+      expect(response_json['data']['token']).to eq(@post.url_token)
+      expect(response).to have_http_status(200)
+    end
+
+    it 'page does not exist' do
+      get '/v1/secret', params: {token: "rassmdsadmasd"} 
+
+      response_json =  json_body(response)
+      expect(response_json['error']['error_message']).to eq("not found")
+      expect(response).to have_http_status(404)
+    end
   end
 end

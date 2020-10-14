@@ -7,7 +7,8 @@ Rails.application.routes.draw do
           get 'reveal'
         end
       end
-      # get "/posts/reveal/:id", to: "posts#reveal"      
+
+      get 'secret', to: "posts#secret"
     end
   end
 end
