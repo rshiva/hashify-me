@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_040348) do
     t.datetime "expired_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["url_token"], name: "index_posts_on_url_token"
   end
 
 end

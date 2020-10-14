@@ -8,5 +8,6 @@ class CreatePosts < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :posts, :url_token
   end
 end
