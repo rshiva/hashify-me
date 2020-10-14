@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+List of APIs
 
-* Ruby version
+| Method | Params |  Parameters | description
+| ------ | ------ | ------ | ------ |
+| Post | localhost:3000/v1/posts | {"body": "Mandatory", "salty_passwor": "optional" } | To Create a secret message
+| GET | localhost:3000/v1/posts/:id/reveal?salty_password | id: post_id |  Need to pass the post id and secret salt to reveal the secret message
+| GET | localhost:3000/v1/secret?token= | token= "5c07673c12146d7e2246" | Pass the url token to land on the above reveal page, this can be used to share the url
 
-* System dependencies
+Todos
 
-* Configuration
+    Write MORE Tests
+    Start adding UI 
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+//https://dillinger.io/
