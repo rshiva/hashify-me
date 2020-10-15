@@ -18,19 +18,28 @@ class Api::V1::PostsController < ApplicationController
   def reveal
     @post = Post.where(id: params[:id]).last
     if @post
-      if params[:salty_password].present? && correct_salt?(@post.salty_password,params[:salty_password])
-        salt =  params[:salty_password]
-      elsif params[:salty_password].present? && !correct_salt?(@post.salty_password,params[:salty_password])
-        render json: {error: {error_message: "Entered Salt is wrong"}}, status: 403 and return 
+      result = SaltChecker.new(@post.salty_password,params[:salty_password] ).call
+      if result[:msg]
+        @post.body = Ciphering.new(@post.body, result[:salt]).decrypt
+        render json: {data: @post.attributes}
       else
-        salt = ''               
+        render json: {error: {error_message: "Not the right key"}}, status: 403 and return 
       end
-      @post.body = Ciphering.new(@post.body, salt).decrypt
-      render json: {data: @post.attributes}
     else
       render json: {error: {error_message: "not found"}}, status: 404
     end
   end
+
+
+  def secret
+    @post =  Post.where(url_token: params[:token]).last
+    if @post
+      render json: {data: {id: @post.id, token: @post.url_token}} and return
+    else
+      render json: {error: {error_message: "not found"}}, status: 404 and return
+    end
+  end
+
 
 
   private

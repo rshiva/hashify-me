@@ -12,9 +12,5 @@ class ApplicationController < ActionController::Base
   def generate_salt
     @salt = BCrypt::Password.create(params[:salty_password])
   end
-
-  def correct_salt?(encrypted_salt,salt='')
-    BCrypt::Password.new(encrypted_salt) ==  salt
-  end
   
 end

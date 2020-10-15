@@ -19,8 +19,6 @@ class Ciphering
     decrypted = [@body].pack('H*').unpack('C*').pack('c*')
     @cipher.update(decrypted) + @cipher.final
     
-    # puts data == plain 
-
   end
 
 end
