@@ -16,7 +16,7 @@ RSpec.describe "Posts", type: :request do
     it "body required" do
       post "/v1/posts", params: attributes_for(:post, body: "")
       response_json = json_body(response)
-      expect(response_json['error']['error_message']).to eq("params missing")
+      expect(response_json['error']['error_type']).to eq("validation")
       expect(response).to have_http_status(422)
     end
   end
@@ -28,7 +28,7 @@ RSpec.describe "Posts", type: :request do
     end
 
     it 'reveal encrypted message' do
-      get "/v1/posts/#{@post.id}/reveal", params: {salty_password: "encrypt key"}
+      get "/v1/posts/#{@post.id}/reveal/?token=#{@post.url_token}", params: {salty_password: "encrypt key"}
 
       response_json =  json_body(response)
       expect(response_json['data']['body']).to eq("Test the encryption")
@@ -43,6 +43,7 @@ RSpec.describe "Posts", type: :request do
     end
 
     it 'page exist' do
+      puts "page exist"
       get '/v1/secret', params: {token: @post.url_token} 
 
       response_json =  json_body(response)
@@ -51,11 +52,24 @@ RSpec.describe "Posts", type: :request do
     end
 
     it 'page does not exist' do
+      puts "page does not exist"
       get '/v1/secret', params: {token: "rassmdsadmasd"} 
 
       response_json =  json_body(response)
-      expect(response_json['error']['error_message']).to eq("not found")
+      expect(response_json['error']['error_type']).to eq("not_found")
       expect(response).to have_http_status(404)
+    end
+
+
+    it 'expired unvisited post deleted' do
+      puts "expired unvisited post deleted"
+      @post = create(:post, expired_at: Date.yesterday)
+
+      get '/v1/secret', params: {token: @post.url_token} 
+      response_json =  json_body(response)
+      expect(response_json['error']['error_type']).to eq("not_found")
+      expect(response).to have_http_status(404)
+
     end
   end
 end
