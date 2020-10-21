@@ -17,6 +17,7 @@ class Api::V1::PostsController < ApplicationController
       if result[:msg]
         message = Ciphering.new(@post["body"], result[:salt]).decrypt
         render json: {data: message}
+        $redis.del(@token) #deleting once its revealed
       else
         render json: {error: {error_type: "invalid_data", error_message: "Not the right key"}}, status: 403 and return 
       end
@@ -28,7 +29,7 @@ class Api::V1::PostsController < ApplicationController
 
   def secret
     if @post
-      render json: {data: { token: @post["url_token"]}} and return
+      render json: {data: { token: @post["url_token"]}} 
     else
       render json: {error: {error_type: "not_found", error_message: "not found"}}, status: 404 and return
     end
@@ -42,9 +43,8 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def find_post
-    token = params["token"] || params[:id]
-    @post = $redis.get(token)
+    @token = params["token"] || params[:id]
+    @post = $redis.get(@token)
     @post = JSON.parse(@post) if @post
-    $redis.del(token) #deleting once its revealed
   end
 end

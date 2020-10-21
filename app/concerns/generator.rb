@@ -19,5 +19,9 @@ module Generator
       end
     end
 
+    def time_to_sec(hours)
+      hours * 60 * 60
+    end
+
   end
 end

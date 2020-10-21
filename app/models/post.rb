@@ -2,10 +2,7 @@ class Post
   include ActiveModel::Validations
   include Generator
 
-  EXPIRE_IN = [ {mins: [1, 10, 15]},
-                {hours: [1, 6, 24]},
-                {days: [1,3,7]}
-              ]
+  EXPIRE_IN = [2, 12, 24]
 
   # id           
   # body          mandatory 
@@ -22,7 +19,7 @@ class Post
   def self.create_new(post_params)
     post = new.tap do |p|
       p.body = self.ciphered(post_params)
-      p.expired_at = post_params[:expired_at]
+      p.expired_at = time_to_sec(EXPIRE_IN[post_params[:expired_at]])
       p.salty_password = self.generate_salt(post_params[:salty_password])
       p.url_token = self.generate_url_token
     end
@@ -37,10 +34,10 @@ class Post
 
   protected
 
-
   def self.serializer(post)
     post_hash = PostSerializer.new(post).serializable_hash
     post_hash[:data][:attributes]
   end
+
 
 end
