@@ -1,6 +1,11 @@
 class Post
   include ActiveModel::Validations
+  include Generator
 
+  EXPIRE_IN = [ {mins: [1, 10, 15]},
+                {hours: [1, 6, 24]},
+                {days: [1,3,7]}
+              ]
 
   # id           
   # body          mandatory 
@@ -21,11 +26,9 @@ class Post
       p.salty_password = self.generate_salt(post_params[:salty_password])
       p.url_token = self.generate_url_token
     end
-    puts "--->",post.url_token
-
     if post.valid?
       $redis.set(post.url_token, post.to_json, ex: post.expired_at)
-      {post: post.to_json, status: 200}
+      {post:  self.serializer(post), status: 200}
     else
       {error_type: "validation", error_message: "params missing", status: 422}
     end
@@ -34,18 +37,10 @@ class Post
 
   protected
 
-  def self.ciphered(post_params)
-    Ciphering.new(post_params[:body], post_params[:salty_password] || "").encrypt
+
+  def self.serializer(post)
+    post_hash = PostSerializer.new(post).serializable_hash
+    post_hash[:data][:attributes]
   end
 
-  def self.generate_salt(salty_password = "")
-    @salt = BCrypt::Password.create(salty_password)
-  end
-
-  def self.generate_url_token
-    loop do
-      @token = SecureRandom.uuid
-      break @token unless $redis.get(@token).present?
-    end
-  end
 end

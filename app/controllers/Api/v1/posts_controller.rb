@@ -5,7 +5,7 @@ class Api::V1::PostsController < ApplicationController
     render json: {error: {error_type: "validation", error_message: "params missing"}}, status: 422 and return if post_params[:body].empty?
     @post = Post.create_new(post_params)
     if @post[:status] == 200
-      render json: {data: {url: @post[:post]}}, status: @post[:status]
+      render json: {data: @post[:post]}, status: @post[:status]
     else
       render json: {error: {error_type: "validation", error_message: "params missing"}}, status: @post[:status]
     end
@@ -38,7 +38,6 @@ class Api::V1::PostsController < ApplicationController
 
   private
   def post_params
-    # params.require(:post).permit(:id,:body, :salty_password, :url_token, :expires_at)
     params.permit(:id, :body, :salty_password, :url_token, :expired_at)
   end
 
@@ -46,5 +45,6 @@ class Api::V1::PostsController < ApplicationController
     token = params["token"] || params[:id]
     @post = $redis.get(token)
     @post = JSON.parse(@post) if @post
+    $redis.del(token) #deleting once its revealed
   end
 end
