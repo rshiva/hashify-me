@@ -4,22 +4,11 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-
-type Props = {
-  name: string;
-}
-
-export const Hello: React.FC<Props> = props => (
-  <div>Hello {props.name}!</div>
-)
-
-Hello.defaultProps = {
-  name: 'David'
-}
+import { HeroBanner } from "./components/hero_banner";
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="Saurabh" />,
+    <HeroBanner name="Saurabh" />,
     document.body.appendChild(document.createElement('div')),
   )
 })
