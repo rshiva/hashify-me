@@ -30,6 +30,8 @@ gem 'jsonapi-serializer'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'httparty'
+
 group :test do
   gem 'database_cleaner-active_record'
 end

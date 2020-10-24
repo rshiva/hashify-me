@@ -1,0 +1,14 @@
+
+
+development:
+  token: <%= ENV['SLACK_TOKEN'] %>
+  client_id: <%= ENV['SLACK_CLIENT_ID'] %>
+  client_secret: <%= ENV['SLACK_CLIENT_SECRET'] %>
+
+staging:
+  host: ENV['redis_host']
+  port: ENV['redis_port']
+
+production:
+  host: ENV['redis_host']
+  port: ENV['redis_port']

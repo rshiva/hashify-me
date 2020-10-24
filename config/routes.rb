@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'slack/index'
-  get 'slack/auth'
+  get 'slack', to: "slack#index"
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api, :path => "", :defaults => {:format => :json} do
     namespace :v1 do
@@ -10,10 +10,11 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :slack, only: [:create] 
+      get 'slack/authorization'
+      post 'slack/slashcommand'
       get 'secret', to: "posts#secret"
     end
   end
 
-  get "slack/authorization", to: "slack#auth"
-  get "slack", to: "slack#index"
 end

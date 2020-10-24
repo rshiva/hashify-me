@@ -1,0 +1,94 @@
+{
+	"title": {
+		"type": "plain_text",
+		"text": "hashify.me"
+	},
+	"submit": {
+		"type": "plain_text",
+		"text": "Submit"
+	},
+	"blocks": [
+		{
+			"type": "input",
+			"element": {
+				"type": "plain_text_input",
+				"action_id": "ml_input",
+				"multiline": true,
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Your secret message"
+				}
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Message"
+			},
+			"hint": {
+				"type": "plain_text",
+				"text": "Hint text"
+			}
+		},
+		{
+			"type": "input",
+			"element": {
+				"type": "plain_text_input",
+				"action_id": "sl_input",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Optional salt"
+				}
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Salt"
+			},
+			"hint": {
+				"type": "plain_text",
+				"text": "Sprinkle some salt to make it more secure"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Pick a time to self destruct the message"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select an item",
+					"emoji": true
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "In 1 hour",
+							"emoji": true
+						},
+						"value": "0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "In 12 hours",
+							"emoji": true
+						},
+						"value": "1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "In 24 hours",
+							"emoji": true
+						},
+						"value": "2"
+					}
+				],
+				"action_id": "static_select-action"
+			}
+		}
+	],
+	"type": "modal"
+}
