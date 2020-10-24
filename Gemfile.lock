@@ -83,8 +83,8 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.10.1)
-      activesupport (>= 5.0.0)
+    jsonapi-serializer (2.1.0)
+      activesupport (>= 4.2)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -145,6 +145,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.2)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.2)
@@ -215,12 +216,13 @@ DEPENDENCIES
   database_cleaner-active_record
   factory_bot_rails
   faker
-  jbuilder (~> 2.7)
+  jsonapi-serializer
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
+  redis
   rspec-rails (~> 4.0.1)
   sass-rails (>= 6)
   spring
