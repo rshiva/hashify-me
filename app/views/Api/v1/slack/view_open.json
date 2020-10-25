@@ -10,6 +10,7 @@
 	"blocks": [
 		{
 			"type": "input",
+			"block_id": "message_id",
 			"element": {
 				"type": "plain_text_input",
 				"action_id": "ml_input",
@@ -30,6 +31,8 @@
 		},
 		{
 			"type": "input",
+			"block_id": "salt_id",
+			"optional": true,
 			"element": {
 				"type": "plain_text_input",
 				"action_id": "sl_input",
@@ -49,6 +52,7 @@
 		},
 		{
 			"type": "section",
+			"block_id": "expiry_id",
 			"text": {
 				"type": "mrkdwn",
 				"text": "Pick a time to self destruct the message"

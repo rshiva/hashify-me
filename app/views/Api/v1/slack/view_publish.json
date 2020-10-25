@@ -1,0 +1,16 @@
+{
+	"type": "home",
+	"title": {
+		"type": "plain_text",
+		"text": "Modal title"
+	},
+	"blocks":  [
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "Use this link to share the secret message created.\n <https://example.com| Secret URL>"
+			}
+		}
+	]
+}
