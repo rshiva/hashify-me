@@ -5,7 +5,6 @@ class SlackApiClient
   base_uri 'https://slack.com/api'
 
   def initialize()
-    # @token = token
     @options = {
       headers: {
         "Content-Type" => "application/json" 
@@ -15,7 +14,6 @@ class SlackApiClient
 
   def authorize(args)
     client_id = Rails.application.config_for(:slack)[:client_id]
-    binding.pry
     client_secret = Rails.application.config_for(:slack)[:client_secret]
     @options = { body: args.merge!(client_id: client_id,client_secret: client_secret )}
     self.class.post('/oauth.v2.access', @options)
@@ -33,7 +31,6 @@ class SlackApiClient
   end
 
   def post_message(args)
-    # @options = { body: args.merge!(token: Rails.application.config_for(:slack)[:token])}
     @options = { body: args}
     @options.merge!(headers: {"Authorization" => "Bearer #{Rails.application.config_for(:slack)[:token]}"})
     self.class.post('/chat.postMessage',@options)
