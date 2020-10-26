@@ -1,20 +1,15 @@
 class Api::V1::SlackController < ApplicationController
 
   def authorization
-    client_id ="1457351754660.1444473716470" #Rails.application.config_for(:slack)[:client_id]
-    client_secret = Rails.application.config_for(:slack)[:client_secret]
-    code = params[:code]
-    binding.pry
-    url = "https://slack.com/api/oauth.v2.access?client_id=#{client_id}&client_secret=#{client_secret}&code=#{code}"
-    response = HTTParty.post(url)
-    render json: {body: {message: "Authorization was called", response: response}}
+    slack = SlackApiClient.new()
+    slack.authorize(code: params[:code])
+    render json: {body: {message: "Authorization was called"}}
   end
 
   def slashcommand
     view_modal = JSON.load(Rails.root.join('app/views/Api/v1/slack/view_open.json'))
-    slack = SlackParty.new()
-    res = slack.open_view(trigger_id: params[:trigger_id], view: view_modal.
-      to_json )
+    slack = SlackApiClient.new()
+    res = slack.open_view(trigger_id: params[:trigger_id], view: view_modal.to_json )
     head :ok
   end
 
@@ -29,7 +24,7 @@ class Api::V1::SlackController < ApplicationController
     post = Post.create(post_params)
     if post
       post_hash = PostSerializer.new(post).serializable_hash
-      slack = SlackParty.new()
+      slack = SlackApiClient.new()
       #instead of test need to send block
       # make the url correct for prod
       # unable to append channed_id

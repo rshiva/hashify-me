@@ -1,6 +1,6 @@
 require 'httparty'
 
-class SlackParty
+class SlackApiClient
   include HTTParty
   base_uri 'https://slack.com/api'
 
@@ -11,6 +11,14 @@ class SlackParty
         "Content-Type" => "application/json" 
       },
     }
+  end
+
+  def authorize(args)
+    client_id = Rails.application.config_for(:slack)[:client_id]
+    binding.pry
+    client_secret = Rails.application.config_for(:slack)[:client_secret]
+    @options = { body: args.merge!(client_id: client_id,client_secret: client_secret )}
+    self.class.post('/oauth.v2.access', @options)
   end
 
   def open_view(args)
