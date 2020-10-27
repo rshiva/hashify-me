@@ -132,6 +132,10 @@ module.exports = {
         800: '#97266d',
         900: '#702459',
       },
+      "deep-champaign": "#FBD1A2",
+      "charcoal": "#264653",
+      "sandy-brown": "#FC9F5B",
+      "burnt-sienna": "#E76F51"
     },
     spacing: {
       px: '1px',
@@ -267,6 +271,10 @@ module.exports = {
       ],
       serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+      logo: ['Antic Slab', 'sans-serif'],
+      title: ['Antic Slab', 'serif'],
+      heading: ['Antic Slab', 'serif'],
+      body: ['Antic Slab', 'sans-serif']
     },
     fontSize: {
       xs: '0.75rem',
