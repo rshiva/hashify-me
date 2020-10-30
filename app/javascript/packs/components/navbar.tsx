@@ -42,19 +42,19 @@ export const Navbar: React.FC = () => (
       <div>
         <a
           href="#"
-          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-charcoal mr-4 navbar-link"
+          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-middle-blue-green mr-4 navbar-link"
         >
           Share a secret
         </a>
         <a
           href="#"
-          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-charcoal mr-4 navbar-link"
+          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-middle-blue-green mr-4 navbar-link"
         >
           About
         </a>
         <a
           href="#"
-          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-charcoal mr-4 navbar-link"
+          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-middle-blue-green mr-4 navbar-link"
         >
           Contact
         </a>

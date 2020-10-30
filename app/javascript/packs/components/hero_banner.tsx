@@ -9,8 +9,8 @@ export const HeroBanner: React.FC = () => (
       <h1 className="text-5xl font-heading">
         Share your secrets securely.
         <br />
-        <button className="bg-sandy-brown text-2xl font-heading hover:bg-burnt-sienna hover:text-white font-bold py-2 px-4 border-b-4 border-burnt-sienna hover:border-sandy-brown rounded">
-          Start Now
+        <button className="btn-primary">
+          Hashify
         </button>
       </h1>
     </div>

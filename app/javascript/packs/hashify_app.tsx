@@ -4,11 +4,11 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Header } from "./components/header";
+import { Home } from "./components/home";
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Header />,
+    <Home />,
     document.body.appendChild(document.createElement('div')),
   )
 })
