@@ -35,24 +35,26 @@ class HashifyDiscordBot
   end
 
   def parse_message(args)
-    puts "---->",args
+    if args.include?("-m") and args.include?("-e")
+      
       expiry_start = args.index("-e") + 1
       expiry_end = args.size - 1
       given_time_range = EXPIRE_IN.include?(args[expiry_start].to_i)
-
-    if args.include?("-m") and args.include?("-e") and given_time_range
+      if given_time_range
+        args = args.reject(&:blank?)
+        message_start = args.index("-m") + 1
+        message_end = (args.index("-s") || args.index("-e")) - 1
     
-      args = args.reject(&:blank?)
-      message_start = args.index("-m") + 1
-      message_end = (args.index("-s") || args.index("-e")) - 1
-  
-      salt_start = (args.index("-s") || args.index("-e")) + 1
-      salt_end = args.index("-e") - 1
-  
-      message = args[message_start .. message_end].join(' ')
-      salt = args[salt_start..salt_end].join(' ')
-      expiry_at = args[expiry_start..expiry_end].join(' ')
-      {body: message, salt: salt, expiry: EXPIRE_IN.index(args[expiry_start].to_i)}
+        salt_start = (args.index("-s") || args.index("-e")) + 1
+        salt_end = args.index("-e") - 1
+    
+        message = args[message_start .. message_end].join(' ')
+        salt = args[salt_start..salt_end].join(' ')
+        expiry_at = args[expiry_start..expiry_end].join(' ')
+        {body: message, salt: salt, expiry: EXPIRE_IN.index(args[expiry_start].to_i)}
+      else
+        {error: "error"}
+      end
     else
       {error: "error"}
     end
@@ -79,7 +81,6 @@ end
 
 
   def send_error_embed(event,args)
-    puts "event",event,args
     event.channel.send_embed do |embed|
       embed.title = args[:title]
       embed.colour = '#ec524b'
