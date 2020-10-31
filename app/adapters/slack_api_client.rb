@@ -8,7 +8,7 @@ class SlackApiClient
     @options = {
       headers: {
         "Content-Type" => "application/json" 
-      },
+      }
     }
   end
 
