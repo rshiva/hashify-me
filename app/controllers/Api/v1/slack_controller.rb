@@ -18,18 +18,19 @@ class Api::V1::SlackController < ApplicationController
     response = JSON.parse(params[:payload])
     form_response = response["view"]["state"]["values"]
     body = form_response["message_id"]["ml_input"]["value"]
-    expired_at = form_response["expiry_id"]["static_select-action"]["selected_option"]["value"]
+    expired_at = form_response["expiry_id"]["selected_expiry"]["selected_option"]["value"]
     salty_password = form_response["salt_id"]["sl_input"]["value"]
     post_params = {body: body, expired_at: expired_at.to_i, salty_password: salty_password}
     post = Post.create(post_params)
     if post
       post_hash = PostSerializer.new(post).serializable_hash
       slack = SlackApiClient.new()
-      #instead of test need to send block
+      #Make response message better
       # make the url correct for prod
-      # unable to append channed_id
+      # unable to append channed_id, instead sending the private message to hashify. shouldnt the link be avaliable in private chat?
       url = "https://"+request.subdomains[0]+"."+request.domain + "/v1/secret?token=#{post_hash[:data][:id]}"
-      res = slack.post_message(channel: params[:channel_id],text: "Use this link to share the secret message created.\n <#{url}| Secret URL>")
+      res = slack.post_message(channel: Rails.application.config_for(:slack)[:channel_id],text: "Use this link to share the secret message created.\n <#{url}| Secret URL>")
+      head :ok
     end
     
   end

@@ -51,14 +51,16 @@
 			}
 		},
 		{
-			"type": "section",
+			"type": "input",
+			"dispatch_action": false,
 			"block_id": "expiry_id",
-			"text": {
-				"type": "mrkdwn",
+			"label": {
+				"type": "plain_text",
 				"text": "Pick a time to self destruct the message"
 			},
-			"accessory": {
+			"element": {
 				"type": "static_select",
+				"action_id": "selected_expiry",
 				"placeholder": {
 					"type": "plain_text",
 					"text": "Select an item",
@@ -89,8 +91,8 @@
 						},
 						"value": "2"
 					}
-				],
-				"action_id": "static_select-action"
+				]
+			
 			}
 		}
 	],
