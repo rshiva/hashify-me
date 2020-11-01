@@ -4,11 +4,11 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { HeroBanner } from "./components/hero_banner";
+import { Home } from "./components/home";
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <HeroBanner name="Saurabh" />,
+    <Home />,
     document.body.appendChild(document.createElement('div')),
   )
 })
