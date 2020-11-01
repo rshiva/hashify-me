@@ -8,7 +8,7 @@ export const Home: React.FC = () => (
       Never share insecurely again.
     </h1>
     <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8">
-      <div className="flex flex-wrap -mx-1 lg:-mx-2 sm:w-100">
+      <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2">
           <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1603964931/flame-1235_lfmajl.png" />
         </div>
@@ -22,7 +22,7 @@ export const Home: React.FC = () => (
       </div>
     </div>
     <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8">
-      <div className="flex flex-wrap -mx-1 lg:-mx-2 sm:w-100">
+      <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 flex items-center justify-center">
           <form className="max-w-sm">
             <div className="md:flex md:items-center mb-6">
