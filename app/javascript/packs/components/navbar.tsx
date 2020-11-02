@@ -50,12 +50,6 @@ export const Navbar: React.FC = () => (
           href="#"
           className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-middle-blue-green mr-4 navbar-link"
         >
-          About
-        </a>
-        <a
-          href="#"
-          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-middle-blue-green mr-4 navbar-link"
-        >
           Contact
         </a>
       </div>

@@ -10,7 +10,7 @@ module.exports = {
   separator: ':',
   theme: {
     screens: {
-      sm: '640px',
+      sm: {'max': '639px'},
       md: '768px',
       lg: '1024px',
       xl: '1280px',
@@ -345,6 +345,7 @@ module.exports = {
       ...negative(theme('spacing')),
     }),
     maxHeight: {
+      xs: '5rem',
       full: '100%',
       screen: '100vh',
     },
