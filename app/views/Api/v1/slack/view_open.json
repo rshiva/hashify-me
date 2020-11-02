@@ -38,7 +38,7 @@
 				"action_id": "sl_input",
 				"placeholder": {
 					"type": "plain_text",
-					"text": "Optional salt"
+					"text": "Sprinkle some salt"
 				}
 			},
 			"label": {
@@ -63,7 +63,7 @@
 				"action_id": "selected_expiry",
 				"placeholder": {
 					"type": "plain_text",
-					"text": "Select an item",
+					"text": "Select a time",
 					"emoji": true
 				},
 				"options": [
