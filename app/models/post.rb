@@ -19,7 +19,7 @@ class Post
   def self.create(post_params)
     post = new.tap do |p|
       p.body = self.ciphered(post_params)
-      p.expired_at = time_to_sec(EXPIRE_IN[post_params[:expired_at]]) if post_params[:expired_at]
+      p.expired_at = time_to_sec(EXPIRE_IN[post_params[:expired_at].to_i]) if post_params[:expired_at]
       p.salty_password = self.generate_salt(post_params[:salty_password])
       p.url_token = self.generate_url_token
     end
