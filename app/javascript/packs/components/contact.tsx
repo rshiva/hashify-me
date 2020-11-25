@@ -1,8 +1,6 @@
 import * as React from "react";
 import { Header } from "./header";
 import { Footer } from "./footer";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const imgURL = "https://res.cloudinary.com/drg9hguhu/image/upload/v1605004642/flame-online-advertising_zujffx.png";
 
@@ -10,7 +8,7 @@ export const Contact: React.FC = () => (
   <>
     <Header img={imgURL} />
     <h1 className="text-4xl text-center my-4 font-heading">
-      It's really easy to slip up!
+      Get in touch with us!
     </h1>
     <div className="font-body font-normal text-xl container -my-6 mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
