@@ -1,20 +1,21 @@
 import * as React from "react";
 
-const imgUrl =
-  "https://res.cloudinary.com/drg9hguhu/image/upload/v1603795471/flame-1250_iccnjo.png";
+interface Props {
+  img: string;
+}
 
-export const HeroBanner: React.FC = () => (
+export const HeroBanner: React.FC<Props> = (props: Props) => (
   <div className="flex flex-column w-full border-b-1 bg-deep-champaign">
     <div className="w-1/2 flex items-center text-center justify-center">
       <h1 className="text-5xl font-heading">
         Share your secrets securely.
         <br />
-        <button className="btn-primary">
+        <a href="#hashify" className="btn-primary">
           Hashify
-        </button>
+        </a>
       </h1>
     </div>
 
-    <img className="w-1/2 hero-img-big" src={imgUrl}></img>
+    <img className="w-1/2 hero-img-big" src={props.img}></img>
   </div>
 );

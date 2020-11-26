@@ -4,11 +4,14 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Home } from "./components/home";
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import App from './components/app'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Home />,
+    <Router>
+      <Route path="/" component={App} />
+    </Router>,
     document.body.appendChild(document.createElement('div')),
   )
 })

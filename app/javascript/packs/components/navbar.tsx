@@ -1,4 +1,5 @@
 import * as React from "react";
+import { NavLink } from "react-router-dom";
 
 const toggleMenu = (event) => {
   document.querySelector("#burger").classList.toggle("sm:block");
@@ -8,10 +9,14 @@ const toggleMenu = (event) => {
 export const Navbar: React.FC = () => (
   <nav className="flex items-center justify-between flex-wrap bg-deep-champaign p-6 text-lg">
     <div className="flex items-center flex-no-shrink mr-6 font-logo text-2xl tracking-normal">
-      <a className="flex items-center">
+      <NavLink
+        className="flex items-center"
+        to="/"
+        exact
+      >
         <img src="https://img.icons8.com/ios/50/000000/expeditedssl.png" />
         Hashify
-      </a>
+      </NavLink>
     </div>
     <div className="block lg:hidden">
       <button
@@ -46,12 +51,13 @@ export const Navbar: React.FC = () => (
         >
           Share a secret
         </a>
-        <a
-          href="#"
-          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-middle-blue-green mr-4 navbar-link"
+        <NavLink
+            className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-middle-blue-green mr-4 navbar-link"
+            to="/contact"
+            exact
         >
           Contact
-        </a>
+        </NavLink>
       </div>
     </div>
   </nav>
