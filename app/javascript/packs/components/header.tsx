@@ -2,11 +2,15 @@ import * as React from "react";
 import { Navbar } from "./navbar";
 import { HeroBanner } from "./hero_banner";
 
-export const Header: React.FC = () => (
+interface Props {
+  img: string;
+}
+
+export const Header: React.FC<Props> = (props: Props) => (
   <>
     <header>
       <Navbar />
     </header>
-    <HeroBanner />
+    <HeroBanner img={props.img} />
   </>
 );
