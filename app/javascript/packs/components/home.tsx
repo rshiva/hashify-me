@@ -4,9 +4,12 @@ import { Footer } from "./footer";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
+const imgUrl =
+  "https://res.cloudinary.com/drg9hguhu/image/upload/v1603795471/flame-1250_iccnjo.png";
+
 export const Home: React.FC = () => (
   <>
-    <Header />
+    <Header img={imgUrl} />
     <h1 className="text-4xl text-center my-4 font-heading">
       It's really easy to slip up!
     </h1>
@@ -99,7 +102,7 @@ export const Home: React.FC = () => (
       </div>
     </div>
 
-    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+    <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 px-4 flex items-center justify-center">
           <form className="max-w-sm">
