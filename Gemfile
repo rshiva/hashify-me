@@ -21,8 +21,9 @@ gem 'turbolinks', '~> 5'
 gem 'redis'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
 gem 'jsonapi-serializer'
+gem 'devise'
+gem 'rolify'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
