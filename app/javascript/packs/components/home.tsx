@@ -106,7 +106,7 @@ export const Home: React.FC = () => (
     <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 px-4 flex items-center justify-center">
-          <PostForm />
+          <PostForm body="Your Secret" expired_at="2 hrs" />
         </div>
         <div className="w-1/2 px-4">
           <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1603968756/flame-809_mg4shn.png" />
