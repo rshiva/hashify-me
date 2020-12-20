@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState, useRef } from "react";
+import axios from 'axios';
 
 interface PostProps {
   body: string;
@@ -14,18 +15,32 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
   const [error, setError] = useState("");
   const form = useRef(null);
 
+  const createPost = async (post) => {
+    console.log(post);
+    var response = await fetch("/v1/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ post }),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+      return await response.json();
+    }
+  }
+
   function submitForm(ev) {
     ev.preventDefault();
-    fetch("/v1/posts", {
-      method: "POST",
-      body: JSON.stringify({ post }),
+    createPost(post).then((response) => {
+      setStatus('success');
+      setPost(response.data);
+      return response.data;
+    }).catch(error => {
+      setError(error);
+      console.error(error);
     })
-      .then(function(response) {
-        setStatus('success')
-        return response.json();
-      })
-      .then((data) => setPost(data.post))
-      .catch((error) => setError(error));
   }
 
   return (
