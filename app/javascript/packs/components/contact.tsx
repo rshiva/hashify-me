@@ -3,11 +3,9 @@ import { Header } from "./header";
 import { Footer } from "./footer";
 import ContactForm from "./contact_form";
 
-const imgURL = "https://res.cloudinary.com/drg9hguhu/image/upload/v1605004642/flame-online-advertising_zujffx.png";
-
 export const Contact: React.FC = () => (
   <>
-    <Header img={imgURL} />
+    <Header page="contact" />
     <h1 className="text-4xl text-center my-4 font-heading">
       Get in touch with us!
     </h1>
