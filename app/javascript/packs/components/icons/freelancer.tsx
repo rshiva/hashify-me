@@ -5,8 +5,8 @@ export const Freelancer: React.FC = () => {
     <svg
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
-      width={655}
-      height={413.68}
+      width={500}
+      height={300}
       viewBox="0 0 655 413.68"
     >
       <path
