@@ -7,7 +7,7 @@ const toggleMenu = (event) => {
 };
 
 export const Navbar: React.FC = () => (
-  <nav className="flex items-center justify-between flex-wrap bg-deep-champaign p-6 text-lg">
+  <nav className="flex items-center justify-between flex-wrap bg-maize-crayola p-6 text-lg">
     <div className="flex items-center flex-no-shrink mr-6 font-logo text-2xl tracking-normal">
       <NavLink
         className="flex items-center"
@@ -45,14 +45,15 @@ export const Navbar: React.FC = () => (
     >
       <div className="lg:flex-grow"></div>
       <div>
-        <a
-          href="#"
-          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-middle-blue-green mr-4 navbar-link"
+      <NavLink
+            className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link"
+            to="/about"
+            exact
         >
-          Share a secret
-        </a>
+          About
+        </NavLink>
         <NavLink
-            className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-middle-blue-green mr-4 navbar-link"
+            className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link"
             to="/contact"
             exact
         >

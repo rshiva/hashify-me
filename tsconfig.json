@@ -10,6 +10,7 @@
     "target": "es5",
     "jsx": "react"
   },
+  "include": ["custom.d.ts"],
   "exclude": [
     "**/*.spec.ts",
     "node_modules",

@@ -4,20 +4,21 @@ import { Footer } from "./footer";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import PostForm from "./post_form";
-
-const imgUrl =
-  "https://res.cloudinary.com/drg9hguhu/image/upload/v1603795471/flame-1250_iccnjo.png";
+import { Freelancer } from "./icons/freelancer";
+import { ChatBot } from "./icons/chat_bot";
 
 export const Home: React.FC = () => (
   <>
-    <Header img={imgUrl} />
+    <Header page="home" title="Share your secrets securely." />
     <h1 className="text-4xl text-center my-4 font-heading">
       It's really easy to slip up!
     </h1>
     <div className="font-body font-normal text-xl container -my-6 mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 px-4">
-          <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1603964931/flame-1235_lfmajl.png" />
+        <div className="w-1/2 p-6 my-4">
+          <div className="md:flex md:items-center mb-6">
+            <Freelancer />
+          </div>
         </div>
         <div className="w-1/2 px-4 flex items-center justify-center">
           <p>
@@ -108,8 +109,11 @@ export const Home: React.FC = () => (
         <div className="w-1/2 px-4 flex items-center justify-center">
           <PostForm body="Your Secret" expired_at="2 hrs" />
         </div>
-        <div className="w-1/2 px-4">
-          <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1603968756/flame-809_mg4shn.png" />
+
+        <div className="w-1/2 p-6 my-4">
+          <div className="md:flex md:items-center mb-6">
+            <ChatBot />
+          </div>
         </div>
       </div>
     </div>
