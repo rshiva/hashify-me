@@ -3,7 +3,7 @@ class Ciphering
   def initialize(body,salt='')
     @body = body
     @salt = salt
-    @cipher = OpenSSL::Cipher::AES.new(128, :CBC)
+    @cipher = OpenSSL::Cipher::AES.new(256, :CBC)
   end
 
   def encrypt
