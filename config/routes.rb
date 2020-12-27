@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {registrations: 'users/registrations'}
+  devise_for :users, 
+              controllers: {registrations: 'users/registrations',
+                            invitations: 'users/invitations' }
   
   get 'slack', to: "slack#index"
 
