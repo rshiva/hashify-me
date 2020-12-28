@@ -3,9 +3,9 @@ development:
   port: 6379
 
 staging:
-  host: ENV['redis_host']
-  port: ENV['redis_port']
+  host: ENV['REDIS_URL']
+  port: ENV['REDIS_PORT']
 
 production:
-  host: ENV['redis_host']
-  port: ENV['redis_port']
+  host: ENV['REDIS_URL']
+  port: ENV['REDIS_PORT']
