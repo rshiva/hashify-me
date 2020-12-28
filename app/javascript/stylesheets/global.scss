@@ -1,6 +1,6 @@
 .btn-primary {
-    @apply .bg-sandy-brown .text-xl .font-body .font-bold .py-2 .px-4 .rounded;
+    @apply  .bg-white .text-xl .font-body .font-bold .py-2 .px-4 .rounded .border .border-black;
     &:hover {
-        @apply .bg-emerald .text-white;
+        @apply .bg-sandy-brown .text-white .border .border-sandy-brown;
     }
 }
