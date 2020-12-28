@@ -1,7 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+
   def after_sign_up_path_for(resource)
-    '/users/edit' # Or :prefix_to_your_route
+    current_user.add_role :admin
+    root_path # Or :prefix_to_your_route
   end
 
 

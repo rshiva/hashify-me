@@ -8,4 +8,5 @@ class User < ApplicationRecord
   belongs_to :account
   accepts_nested_attributes_for :account
 
+  delegate :name, to: :account, prefix: true
 end

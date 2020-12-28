@@ -33,8 +33,13 @@
 
   <%= f.fields_for :account do |builder| %>
     <div class="field">
-      <%= builder.label :account_name %><br />
-      <%= builder.text_field :name, disabled: true%>
+      <%= builder.label :account_name %> <br />
+      <%= resource.account_name%>
+      <%
+=begin%>
+ <%= builder.text_field :name, disabled: true%> 
+<%
+=end%>
     </div>
   <% end %>
 
