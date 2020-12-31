@@ -1,0 +1,10 @@
+<% current_user.invitations.each do |user|%>
+  <p>
+    <%= user.email%> 
+    <% text = user.invitation_accepted? ? '' : 'not' %> has  <%= text %> accepted invitation 
+    <% if !user.invitation_accepted? && !user.valid_invitation? %>
+      <%= link_to  "Resend Invitation", "#" %>
+    <% end %>
+  </p>
+  <br>
+<% end %>

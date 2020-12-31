@@ -138,7 +138,7 @@ Devise.setup do |config|
   # The period the generated invitation token is valid.
   # After this period, the invited resource won't be able to accept the invitation.
   # When invite_for is 0 (the default), the invitation won't expire.
-  config.invite_for = 2.days
+  config.invite_for = 1.minute #2.days
   # config.require_password_on_accepting = true
 
   # Number of invitations users can send.
