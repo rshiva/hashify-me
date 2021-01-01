@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { useState, useEffect } from "react";
+import { string } from "prop-types";
 
 interface PostProps {
     id: string;
@@ -26,7 +27,7 @@ const fetchPost = async (slug: string) => {
     }
 }
 
-const fetchReveal = async (id) => {
+const fetchReveal = async (id): Promise<PostProps> => {
     var response = await fetch(`/v1/posts/${id}/reveal`, {
         method: "GET",
         headers: {
@@ -58,10 +59,11 @@ export const Post: React.FC<PostProps> = (props) => {
         })();
     }, []);
 
-    const revealPost = async (slug: string) => {
+    const revealPost = async (slug: string): Promise<string> => {
         try {
             const getReveal = await fetchReveal(slug);
             setReveal(getReveal.data);
+            return getReveal.data;
         }
         catch (error) {
             setError(error.message);
