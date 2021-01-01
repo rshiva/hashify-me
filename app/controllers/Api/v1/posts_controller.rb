@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-  before_action :find_post, only: [:reveal, :secret, ]
+  before_action :find_post, only: [:reveal, :secret]
 
   def create
     render json: {error: {error_type: "validation", error_message: "params missing"}}, status: 422 and return if post_params[:body].empty?
