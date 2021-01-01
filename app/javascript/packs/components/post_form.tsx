@@ -8,14 +8,13 @@ interface PostProps {
   url_token?: string;
 }
 
-const PostForm: React.FC<PostProps> = (props: PostProps) => {
+const PostForm: React.FC<PostProps> = (props) => {
   const [post, setPost] = useState(props);
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
   const form = useRef(null);
 
   const createPost = async (post) => {
-    console.log(post);
     var response = await fetch("/v1/posts", {
       method: "POST",
       headers: {
@@ -110,7 +109,11 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
             </div>
           </div>
         </form> :
-        <p>Post: {post.url_token}</p>
+        <div className="border border-black p-6">
+          <p>Shareable URL: {post.url_token}</p>
+          <p>Expires at: {post.expired_at} </p>
+          {post.salty_password !== undefined && <p>This post needs a password</p>}
+        </div>
       }
     </>
   );
