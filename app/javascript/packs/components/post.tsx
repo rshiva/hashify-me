@@ -1,9 +1,8 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "./header";
 import { Footer } from "./footer";
-import { useState, useEffect } from "react";
-import { string } from "prop-types";
 
 interface PostProps {
     id: string;
