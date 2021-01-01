@@ -13,7 +13,11 @@ interface PostProps {
     url_token?: string;
 }
 
-const fetchPost = async (slug: string) => {
+interface RevealProps {
+    data: string;
+}
+
+const fetchPost = async (slug: string): Promise<PostProps> => {
     var response = await fetch(`/v1/secret?token=${slug}`, {
         method: "GET",
         headers: {
@@ -27,7 +31,7 @@ const fetchPost = async (slug: string) => {
     }
 }
 
-const fetchReveal = async (id): Promise<PostProps> => {
+const fetchReveal = async (id): Promise<RevealProps> => {
     var response = await fetch(`/v1/posts/${id}/reveal`, {
         method: "GET",
         headers: {
