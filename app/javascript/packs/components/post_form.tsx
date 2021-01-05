@@ -112,7 +112,6 @@ const PostForm: React.FC<PostProps> = (props) => {
         <div className="border border-black p-6">
           <p>Shareable URL: {post.url_token}</p>
           <p>Expires at: {post.expired_at} </p>
-          {post.salty_password !== undefined && <p>This post needs a password</p>}
         </div>
       }
     </>

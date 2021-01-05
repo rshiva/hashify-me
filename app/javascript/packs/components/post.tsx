@@ -30,7 +30,7 @@ const fetchPost = async (slug: string): Promise<PostProps> => {
     }
 }
 
-const fetchReveal = async (id): Promise<RevealProps> => {
+const fetchReveal = async (id: string): Promise<RevealProps> => {
     var response = await fetch(`/v1/posts/${id}/reveal`, {
         method: "GET",
         headers: {
