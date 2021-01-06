@@ -43,7 +43,7 @@ class Api::V1::PostsController < ApplicationController
 
   private
   def post_params
-    params.permit(:id, :body, :salty_password, :url_token, :expired_at, :has_salt)
+    params.require(:post).permit(:id, :body, :salty_password, :url_token, :expired_at, :has_salt)
   end
 
   def find_post
