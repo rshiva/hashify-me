@@ -10,7 +10,7 @@ module.exports = {
   separator: ':',
   theme: {
     screens: {
-      sm: '640px',
+      sm: {'max': '639px'},
       md: '768px',
       lg: '1024px',
       xl: '1280px',
@@ -132,6 +132,13 @@ module.exports = {
         800: '#97266d',
         900: '#702459',
       },
+      "blue-jeans": "#00B0FF",
+      "maize-crayola": "#F4C95D",
+      "deep-champaign": "#00B0FF",
+      "middle-blue-green": "#7DCFB6",
+      "sandy-brown": "#FC9F5B",
+      "lemon-meringue": "#ECE4B7",
+      "emerald": "#33CA7F"
     },
     spacing: {
       px: '1px',
@@ -267,6 +274,10 @@ module.exports = {
       ],
       serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+      logo: ['Antic Slab', 'serif'],
+      title: ['Antic Slab', 'serif'],
+      heading: ['Bree Serif', 'serif'],
+      body: ['Antic Slab', 'serif']
     },
     fontSize: {
       xs: '0.75rem',
@@ -336,6 +347,7 @@ module.exports = {
       ...negative(theme('spacing')),
     }),
     maxHeight: {
+      xs: '5rem',
       full: '100%',
       screen: '100vh',
     },

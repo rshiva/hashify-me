@@ -17,5 +17,5 @@ Rails.application.routes.draw do
       get 'secret', to: "posts#secret"
     end
   end
-
+  match '*path', to: 'home#index', via: :all
 end
