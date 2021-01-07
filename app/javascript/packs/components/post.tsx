@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "./header";
 import { Footer } from "./footer";
@@ -8,6 +8,7 @@ interface PostProps {
     id: string;
     body: string;
     salty_password?: string;
+    has_salt: boolean;
     expired_at: string;
     url_token?: string;
 }
@@ -21,7 +22,7 @@ const fetchPost = async (slug: string): Promise<PostProps> => {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
-        }
+        },
     });
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,6 +50,8 @@ export const Post: React.FC<PostProps> = (props) => {
     const [reveal, setReveal] = useState("");
     const [error, setError] = useState("");
     const [post, setPost] = useState(props);
+       
+    const revealForm = useRef(null);
 
     useEffect(() => {
         (async function fetchCurrentPost() {
@@ -73,6 +76,9 @@ export const Post: React.FC<PostProps> = (props) => {
         }
     };
 
+    const handleReveal = (ev: React.FormEvent) => {
+    }
+
     return (
         <>
             <Header page="secret" title="That's our secret!" />
@@ -85,7 +91,33 @@ export const Post: React.FC<PostProps> = (props) => {
                         {error !== "" ?
                             <div>{error}</div>
                             :
-                            <button onClick={async () => { revealPost(slug) }} className="btn-primary">Reveal</button>}
+                            <>
+                                {post.has_salt === true ?
+                                    <>
+                                        <form className="max-w-sm" ref={revealForm} onSubmit={handleReveal}>
+                                            <div className="md:flex md:items-center mb-6">
+                                                <div className="md:w-1/3">
+                                                <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+                                                    Salt
+                                                </label>
+                                                </div>
+                                                <div className="md:w-2/3">
+                                                <textarea
+                                                    name="post[salty_]"
+                                                    className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
+                                                    placeholder="Your salt"
+                                                    cols={20}
+                                                    value={post.body}
+                                                    onChange={(ev) => setPost({ ...post, body: ev.target.value })}
+                                                />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </> :
+                                    <button onClick={async () => { revealPost(slug) }} className="btn-primary">Reveal</button>
+                                }
+                            </>
+                        }
                     </div>
                     {reveal !== "" ?
                         <div className="w-full px-4 flex items-center justify-center">

@@ -30,7 +30,7 @@ const PostForm: React.FC<PostProps> = (props) => {
     }
   }
 
-  function submitForm(ev) {
+  function submitForm(ev: React.FormEvent) {
     ev.preventDefault();
     createPost(post).then((response) => {
       setStatus('success');

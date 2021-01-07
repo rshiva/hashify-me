@@ -15,7 +15,7 @@ class Api::V1::PostsController < ApplicationController
 
   def reveal
     if @post
-      result = SaltChecker.new(@post,params[:salty_password] ).call
+      result = SaltChecker.new(@post, params[:salty_password]).call
       if result[:msg]
         message = Ciphering.new(@post["body"], result[:salt]).decrypt
         render json: {data: message}
@@ -35,8 +35,6 @@ class Api::V1::PostsController < ApplicationController
     else
       render json: {error: {error_type: "not_found", error_message: "not found"}}, status: 404 and return
     end
-
-    
   end
 
 
@@ -53,10 +51,10 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def validate_has_salt
-      if post_params.has_key?(:has_salt) 
-        unless [true, false].include?(post_params[:has_salt])
-          render json: {error: {error_type: "validation", error_message: "Cannot pass other than boolean"}}, status: 422 and return
-        end
+    if post_params.has_key?(:has_salt)
+      unless [true, false].include?(post_params[:has_salt])
+        render json: {error: {error_type: "validation", error_message: "Cannot pass other than boolean"}}, status: 422 and return
       end
     end
+  end
 end
