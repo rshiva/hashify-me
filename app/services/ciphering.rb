@@ -1,6 +1,6 @@
 class Ciphering
 
-  def initialize(body,salt='')
+  def initialize(body,salt)
     @body = body
     @salt = salt
     @cipher = OpenSSL::Cipher::AES.new(128, :CBC)

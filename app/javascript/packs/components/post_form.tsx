@@ -6,16 +6,16 @@ interface PostProps {
   salty_password?: string;
   expired_at: string;
   url_token?: string;
+  has_salt: boolean;
 }
 
-const PostForm: React.FC<PostProps> = (props: PostProps) => {
+const PostForm: React.FC<PostProps> = (props) => {
   const [post, setPost] = useState(props);
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
   const form = useRef(null);
 
-  const createPost = async (post) => {
-    console.log(post);
+  const createPost = async (post: PostProps) => {
     var response = await fetch("/v1/posts", {
       method: "POST",
       headers: {
@@ -42,6 +42,7 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
     })
   }
 
+
   return (
     <>
       {status !== "success" ?
@@ -56,7 +57,7 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
               <textarea
                 name="post[body]"
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
-                placeholder={props.body}
+                placeholder="Your salt"
                 cols={20}
                 value={post.body}
                 onChange={(ev) => setPost({ ...post, body: ev.target.value })}
@@ -66,8 +67,15 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
-                Passcode <br /> ( optional )
-                  </label>
+                Passcode <br /> ( Enable ) &nbsp;
+                <input
+                  name="post[has_salt]"
+                  type="checkbox"
+                  checked={post.has_salt}
+                  onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
+                    setPost({ ...post, has_salt: ev.target.checked })
+                  } />
+              </label>
             </div>
             <div className="md:w-2/3">
               <input
@@ -76,7 +84,8 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
                 placeholder="Your salt"
                 value={post.salty_password}
-                onChange={(ev) =>
+                disabled={!post.has_salt}
+                onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
                   setPost({ ...post, salty_password: ev.target.value })
                 }
               />
@@ -110,7 +119,10 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
             </div>
           </div>
         </form> :
-        <p>Post: {post.url_token}</p>
+        <div className="border border-black p-6">
+          <p>Shareable URL: {post.url_token}</p>
+          <p>Expires at: {post.expired_at} </p>
+        </div>
       }
     </>
   );
