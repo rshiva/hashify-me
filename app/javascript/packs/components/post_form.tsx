@@ -12,11 +12,10 @@ interface PostProps {
 const PostForm: React.FC<PostProps> = (props) => {
   const [post, setPost] = useState(props);
   const [status, setStatus] = useState("");
-  const [hasSalt, setHasSalt] = useState(false);
   const [error, setError] = useState("");
   const form = useRef(null);
 
-  const createPost = async (post) => {
+  const createPost = async (post: PostProps) => {
     var response = await fetch("/v1/posts", {
       method: "POST",
       headers: {
@@ -43,9 +42,6 @@ const PostForm: React.FC<PostProps> = (props) => {
     })
   }
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    return setHasSalt(event.target.checked);
-  };
 
   return (
     <>
@@ -75,8 +71,10 @@ const PostForm: React.FC<PostProps> = (props) => {
                 <input
                   name="post[has_salt]"
                   type="checkbox"
-                  checked={hasSalt}
-                  onChange={handleInputChange} />
+                  checked={post.has_salt}
+                  onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
+                    setPost({ ...post, has_salt: ev.target.checked })
+                  } />
               </label>
             </div>
             <div className="md:w-2/3">
@@ -86,8 +84,8 @@ const PostForm: React.FC<PostProps> = (props) => {
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
                 placeholder="Your salt"
                 value={post.salty_password}
-                disabled={!hasSalt}
-                onChange={(ev) =>
+                disabled={!post.has_salt}
+                onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
                   setPost({ ...post, salty_password: ev.target.value })
                 }
               />
@@ -124,7 +122,6 @@ const PostForm: React.FC<PostProps> = (props) => {
         <div className="border border-black p-6">
           <p>Shareable URL: {post.url_token}</p>
           <p>Expires at: {post.expired_at} </p>
-          {hasSalt === true && <p>This post needs a password</p>}
         </div>
       }
     </>
