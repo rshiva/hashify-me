@@ -1,11 +1,8 @@
 development:
   host: 127.0.0.1
-  port: 6379
 
 staging:
   host: ENV['REDIS_URL']
-  port: ENV['REDIS_PORT']
 
 production:
   host: ENV['REDIS_URL']
-  port: ENV['REDIS_PORT']
