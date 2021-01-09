@@ -45,17 +45,10 @@ export const Navbar: React.FC = () => (
     >
       <div className="lg:flex-grow"></div>
       <div>
-      <NavLink
-            className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link"
-            to="/about"
-            exact
-        >
-          About
-        </NavLink>
         <NavLink
-            className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link"
-            to="/contact"
-            exact
+          className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link"
+          to="/contact"
+          exact
         >
           Contact
         </NavLink>
