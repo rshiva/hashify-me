@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApplicationController
   before_action :validate_has_salt, only: [:create]
-  before_action :find_post, only: [:reveal, :secret]
+  before_action :find_post, only: [:reveal, :secret, :reveal_post]
 
   def create
     render json: {error: {error_type: "validation", error_message: "params missing"}}, status: 422 and return if post_params[:body].empty?
@@ -15,7 +15,22 @@ class Api::V1::PostsController < ApplicationController
 
   def reveal
     if @post
-      result = SaltChecker.new(@post,params[:salty_password] ).call
+      result = SaltChecker.new(@post, params[:salty_password]).call
+      if result[:msg]
+        message = Ciphering.new(@post["body"], result[:salt]).decrypt
+        render json: {data: message}
+        $redis.del(@token) #deleting once its revealed
+      else
+        render json: {error: {error_type: "invalid_data", error_message: "Oops! Incorrect Passcode"}}, status: 403 and return 
+      end
+    else
+      render json: {error: {error_type: "not_found", error_message: " Data not found or has been already viewed"}}, status: 404
+    end
+  end
+
+  def reveal_post
+    if @post
+      result = SaltChecker.new(@post, post_params[:salty_password]).call
       if result[:msg]
         message = Ciphering.new(@post["body"], result[:salt]).decrypt
         render json: {data: message}
@@ -31,15 +46,11 @@ class Api::V1::PostsController < ApplicationController
 
   def secret
     if @post
-      render json: {data: { token: @post["url_token"]}} 
+      render json: @post 
     else
       render json: {error: {error_type: "not_found", error_message: "not found"}}, status: 404 and return
     end
-
-    
   end
-
-
 
   private
   def post_params
@@ -53,10 +64,10 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def validate_has_salt
-      if post_params.has_key?(:has_salt) 
-        unless [true, false].include?(post_params[:has_salt])
-          render json: {error: {error_type: "validation", error_message: "Cannot pass other than boolean"}}, status: 422 and return
-        end
+    if post_params.has_key?(:has_salt)
+      unless [true, false].include?(post_params[:has_salt])
+        render json: {error: {error_type: "validation", error_message: "Cannot pass other than boolean"}}, status: 422 and return
       end
     end
+  end
 end

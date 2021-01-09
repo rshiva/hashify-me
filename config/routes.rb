@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:create] do
         member do
           get 'reveal'
+          post 'reveal_post'
         end
       end
 
