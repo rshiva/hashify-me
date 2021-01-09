@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApplicationController
   before_action :validate_has_salt, only: [:create]
-  before_action :find_post, only: [:reveal, :secret]
+  before_action :find_post, only: [:reveal, :secret, :reveal_post]
 
   def create
     render json: {error: {error_type: "validation", error_message: "params missing"}}, status: 422 and return if post_params[:body].empty?
@@ -28,16 +28,29 @@ class Api::V1::PostsController < ApplicationController
     end
   end
 
-
-  def secret
+  def reveal_post
     if @post
-      render json: {data: { token: @post["url_token"]}} 
+      result = SaltChecker.new(@post, post_params[:salty_password]).call
+      if result[:msg]
+        message = Ciphering.new(@post["body"], result[:salt]).decrypt
+        render json: {data: message}
+        $redis.del(@token) #deleting once its revealed
+      else
+        render json: {error: {error_type: "invalid_data", error_message: "Oops! Incorrect Passcode"}}, status: 403 and return 
+      end
     else
-      render json: {error: {error_type: "not_found", error_message: "not found"}}, status: 404 and return
+      render json: {error: {error_type: "not_found", error_message: " Data not found or has been already viewed"}}, status: 404
     end
   end
 
 
+  def secret
+    if @post
+      render json: @post 
+    else
+      render json: {error: {error_type: "not_found", error_message: "not found"}}, status: 404 and return
+    end
+  end
 
   private
   def post_params
