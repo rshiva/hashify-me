@@ -20,7 +20,8 @@ class Api::V1::SlackController < ApplicationController
     body = form_response["message_id"]["ml_input"]["value"]
     expired_at = form_response["expiry_id"]["selected_expiry"]["selected_option"]["value"]
     salty_password = form_response["salt_id"]["sl_input"]["value"]
-    post_params = {body: body, expired_at: expired_at.to_i, salty_password: salty_password}
+    has_salt = salty_password.nil? ? false : true
+    post_params = {body: body, expired_at: expired_at.to_i, salty_password: salty_password, has_salt: has_salt}
     post = Post.create(post_params)
     if post
       post_hash = PostSerializer.new(post).serializable_hash
