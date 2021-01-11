@@ -13,7 +13,9 @@ const PostForm: React.FC<PostProps> = (props) => {
   const [post, setPost] = useState(props);
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
+  const [copyMessage, setMessage] = useState("");
   const form = useRef(null);
+  const clipboard = useRef(null);
 
   const createPost = async (post: PostProps) => {
     var response = await fetch("/v1/posts", {
@@ -42,7 +44,22 @@ const PostForm: React.FC<PostProps> = (props) => {
     })
   }
 
+  const copyToClipboard = () => {
+    window.getSelection().removeAllRanges();
+    const range = document.createRange();
+    range.selectNode(clipboard.current);
+    window.getSelection().addRange(range);
 
+    try {
+      const successful = document.execCommand('copy');
+      const message = successful ? 'successful' : 'unsuccessful';
+      setMessage('Copy email command was ' + message + ' You can now share this url.');
+    } catch (err) {
+      setMessage('Oops, unable to copy');
+    }
+    window.getSelection().removeAllRanges();
+  };
+  
   return (
     <>
       {status !== "success" ?
@@ -120,8 +137,10 @@ const PostForm: React.FC<PostProps> = (props) => {
           </div>
         </form> :
         <div className="border border-black p-6">
-          <p>Shareable URL: {post.url_token}</p>
-          <p>Expires at: {post.expired_at} </p>
+          Shareable URL:
+          <p ref={clipboard}>{`https://hashify.app/secret/${post.url_token}`}</p>
+          <button onClick={copyToClipboard} className="btn-primary">Copy to Clipboard</button>
+          {copyMessage !== "" && <p>{copyMessage}</p>}
         </div>
       }
     </>
