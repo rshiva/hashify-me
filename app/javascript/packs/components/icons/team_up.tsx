@@ -5,6 +5,7 @@ export const TeamUp: React.FC = () => {
     <svg
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
+      width=''
       height={462.415}
       viewBox="0 0 802 462.415"
     >
