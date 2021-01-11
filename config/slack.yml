@@ -9,3 +9,9 @@ development:
   client_id: <%= ENV['SLACK_CLIENT_ID'] %>
   client_secret: <%= ENV['SLACK_CLIENT_SECRET'] %>
   channel_id: <%= ENV['SLACK_CHANNEL_ID'] %>
+
+staging:
+  token: <%= ENV['SLACK_TOKEN'] %>
+  client_id: <%= ENV['SLACK_CLIENT_ID'] %>
+  client_secret: <%= ENV['SLACK_CLIENT_SECRET'] %>
+  channel_id: <%= ENV['SLACK_CHANNEL_ID'] %>
