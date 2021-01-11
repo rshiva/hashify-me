@@ -33,7 +33,7 @@ const buttonLink = (page: string) => {
 
 export const HeroBanner: React.FC<Props> = (props: Props) => (
   <div className="flex flex-column w-full border-b-1 bg-maize-crayola">
-    <div className="w-1/2 sm:w-full sm:py-4 flex items-center text-center justify-center">
+    <div className="w-1/2 md:w-full md:py-4 sm:w-full sm:py-4 flex items-center text-center justify-center">
       <h1 className="text-5xl font-heading">
         {props.title}
         <br />
@@ -41,7 +41,7 @@ export const HeroBanner: React.FC<Props> = (props: Props) => (
       </h1>
     </div>
 
-    <div className="w-1/2 sm:hidden">
+    <div className="w-1/2 md:hidden sm:hidden">
       {showHeaderImage(props.page)}
     </div>
   </div>

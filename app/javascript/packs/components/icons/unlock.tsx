@@ -5,7 +5,6 @@ export const Unlock: React.FC = () => {
     <svg
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
-      width={802}
       height={462.415}
       viewBox="0 0 1010.892 727.284"
     >

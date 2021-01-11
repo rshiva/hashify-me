@@ -5,7 +5,7 @@ export const ChatBot: React.FC = () => {
     <svg
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
-      width={844.5}
+      width=''
       height={494.246}
       viewBox="0 0 844.5 494.246"
     >
