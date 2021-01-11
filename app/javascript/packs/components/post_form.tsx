@@ -53,7 +53,7 @@ const PostForm: React.FC<PostProps> = (props) => {
     try {
       const successful = document.execCommand('copy');
       const message = successful ? 'successful' : 'unsuccessful';
-      setMessage('Copy email command was ' + message + ' You can now share this url.');
+      setMessage('Copy url command was ' + message + ' You can now share this url.');
     } catch (err) {
       setMessage('Oops, unable to copy');
     }
