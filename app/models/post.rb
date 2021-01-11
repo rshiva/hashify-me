@@ -19,7 +19,7 @@ class Post
   def self.create(post_params)
     post = new.tap do |p|
       salty_password = post_params[:has_salt] ? post_params[:salty_password] : ''
-      p.body = self.ciphered(post_params["body"], salty_password)
+      p.body = self.ciphered(post_params[:body], salty_password)
       p.expired_at = time_to_sec(EXPIRE_IN[post_params[:expired_at].to_i]) if post_params[:expired_at]
       p.salty_password = self.generate_salt(salty_password)
       p.has_salt = post_params[:has_salt]

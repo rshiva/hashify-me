@@ -46,7 +46,7 @@ class Api::V1::PostsController < ApplicationController
 
   def secret
     if @post
-      render json: @post 
+      render json: {url_token: @post["url_token"], expired_at: @post["expired_at"], has_salt: @post["has_salt"]} 
     else
       render json: {error: {error_type: "not_found", error_message: "not found"}}, status: 404 and return
     end
