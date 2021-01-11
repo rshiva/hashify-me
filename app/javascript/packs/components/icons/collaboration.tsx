@@ -5,7 +5,8 @@ export const Collaboration: React.FC = () => {
         <svg
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
-            max-height={462.415}
+            width=''
+            height={462.415}
             viewBox="0 0 883.929 713.746"
         >
             <title>{"real_time_collaboration"}</title>

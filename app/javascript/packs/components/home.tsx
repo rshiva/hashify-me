@@ -15,12 +15,12 @@ export const Home: React.FC = () => (
     </h1>
     <div className="font-body font-normal text-xl container -my-6 mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 p-6 my-4">
+        <div className="w-1/2 sm:w-full p-6 my-4">
           <div className="md:flex md:items-center mb-6">
             <Freelancer />
           </div>
         </div>
-        <div className="w-1/2 px-4 flex items-center justify-center">
+        <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
           <p>
             It's really easy to share secrets on your favourite chatting
             software. However, every time you do it, it lives in the database of
@@ -35,7 +35,7 @@ export const Home: React.FC = () => (
 
     <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 px-4">
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
             <a href="https://slack.com/oauth/v2/authorize?client_id=1457351754660.1444473716470&scope=chat:write,commands&user_scope=">
               <img
@@ -61,7 +61,7 @@ export const Home: React.FC = () => (
             </SyntaxHighlighter>
           </div>
         </div>
-        <div className="w-1/2 px-4">
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
             <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917421/hashify-screenshot_pkxx3v.png" />
           </div>
@@ -71,12 +71,12 @@ export const Home: React.FC = () => (
 
     <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 px-4">
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
             <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917775/discord-screenshot_qld5ww.png" />
           </div>
         </div>
-        <div className="w-1/2 px-4">
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
             <img
               className="max-h-sm"
@@ -106,11 +106,11 @@ export const Home: React.FC = () => (
 
     <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 px-4 flex items-center justify-center">
+        <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
           <PostForm body="" expired_at="2 hrs" has_salt={false} salty_password={""} />
         </div>
 
-        <div className="w-1/2 p-6 my-4">
+        <div className="w-1/2 sm:w-full p-6 my-4">
           <div className="md:flex md:items-center mb-6">
             <ChatBot />
           </div>
