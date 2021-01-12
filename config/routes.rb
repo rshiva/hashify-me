@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:create] do
         member do
           get 'reveal'
+          post 'reveal_post'
         end
       end
 
@@ -17,5 +18,5 @@ Rails.application.routes.draw do
       get 'secret', to: "posts#secret"
     end
   end
-
+  match '*path', to: 'home#index', via: :all
 end

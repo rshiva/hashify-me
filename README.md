@@ -1,4 +1,4 @@
-# Hashify Me
+# Hashify
 
 ### Stack
 

@@ -1,1 +1,2 @@
-$redis = Redis.new(host:  Rails.application.config_for(:redis)[:host]  ,port:  Rails.application.config_for(:redis)[:post], timeout: 10)
+$redis = Redis.new(host: Rails.application.config_for(:redis)[:host],
+                   timeout: 10)

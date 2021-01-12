@@ -1,5 +1,6 @@
 class Api::V1::PostsController < ApplicationController
-  before_action :find_post, only: [:reveal, :secret]
+  before_action :validate_has_salt, only: [:create]
+  before_action :find_post, only: [:reveal, :secret, :reveal_post]
 
   def create
     render json: {error: {error_type: "validation", error_message: "params missing"}}, status: 422 and return if post_params[:body].empty?
@@ -14,38 +15,59 @@ class Api::V1::PostsController < ApplicationController
 
   def reveal
     if @post
-      result = SaltChecker.new(@post["salty_password"],params[:salty_password] ).call
+      result = SaltChecker.new(@post, params[:salty_password]).call
       if result[:msg]
         message = Ciphering.new(@post["body"], result[:salt]).decrypt
         render json: {data: message}
         $redis.del(@token) #deleting once its revealed
       else
-        render json: {error: {error_type: "invalid_data", error_message: "Not the right key"}}, status: 403 and return 
+        render json: {error: {error_type: "invalid_data", error_message: "Oops! Incorrect Passcode"}}, status: 403 and return 
       end
     else
-      render json: {error: {error_type: "not_found", error_message: "not found"}}, status: 404
+      render json: {error: {error_type: "not_found", error_message: " Data not found or has been already viewed"}}, status: 404
+    end
+  end
+
+  def reveal_post
+    if @post
+      result = SaltChecker.new(@post, post_params[:salty_password]).call
+      if result[:msg]
+        message = Ciphering.new(@post["body"], result[:salt]).decrypt
+        render json: {data: message}
+        $redis.del(@token) #deleting once its revealed
+      else
+        render json: {error: {error_type: "invalid_data", error_message: "Oops! Incorrect Passcode"}}, status: 403 and return 
+      end
+    else
+      render json: {error: {error_type: "not_found", error_message: " Data not found or has been already viewed"}}, status: 404
     end
   end
 
 
   def secret
     if @post
-      render json: {data: { token: @post["url_token"]}} 
+      render json: {url_token: @post["url_token"], expired_at: @post["expired_at"], has_salt: @post["has_salt"]} 
     else
       render json: {error: {error_type: "not_found", error_message: "not found"}}, status: 404 and return
     end
   end
 
-
-
   private
   def post_params
-    params.permit(:id, :body, :salty_password, :url_token, :expired_at)
+    params.require(:post).permit(:id, :body, :salty_password, :url_token, :expired_at, :has_salt)
   end
 
   def find_post
     @token = params["token"] || params[:id]
     @post = $redis.get(@token)
     @post = JSON.parse(@post) if @post
+  end
+
+  def validate_has_salt
+    if post_params.has_key?(:has_salt)
+      unless [true, false].include?(post_params[:has_salt])
+        render json: {error: {error_type: "validation", error_message: "Cannot pass other than boolean"}}, status: 422 and return
+      end
+    end
   end
 end
