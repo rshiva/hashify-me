@@ -52,8 +52,8 @@ const PostForm: React.FC<PostProps> = (props) => {
 
     try {
       const successful = document.execCommand('copy');
-      const message = successful ? 'successful' : 'unsuccessful';
-      setMessage('Copy url command was ' + message + ' You can now share this url.');
+      const message = successful ? 'successfully' : 'unsuccessfully';
+      setMessage('The url was copied ' + message + '.');
     } catch (err) {
       setMessage('Oops, unable to copy');
     }
@@ -63,7 +63,7 @@ const PostForm: React.FC<PostProps> = (props) => {
   return (
     <>
       {status !== "success" ?
-        <form className="max-w-sm" ref={form} onSubmit={submitForm}>
+        <form className="w-full" ref={form} onSubmit={submitForm}>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
@@ -74,7 +74,8 @@ const PostForm: React.FC<PostProps> = (props) => {
               <textarea
                 name="post[body]"
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
-                placeholder="Your message goes here "
+                placeholder="Your message goes here.."
+                rows={5}
                 cols={20}
                 value={post.body}
                 onChange={(ev) => setPost({ ...post, body: ev.target.value })}
@@ -136,11 +137,13 @@ const PostForm: React.FC<PostProps> = (props) => {
             </div>
           </div>
         </form> :
-        <div className="border border-black p-6">
-          Shareable URL:
-          <p ref={clipboard}>{`https://hashify.app/secret/${post.url_token}`}</p>
-          <button onClick={copyToClipboard} className="btn-primary">Copy to Clipboard</button>
-          {copyMessage !== "" && <p>{copyMessage}</p>}
+        <div>
+          <h3 className="py-4 font-lg">Shareable URL:</h3>
+          <div className="border-2 border-black p-6 rounded-lg">
+            <p className="pb-2" ref={clipboard}>{`https://hashify.app/secret/${post.url_token}`}</p>
+            <button onClick={copyToClipboard} className="btn-primary pt-2">Copy to Clipboard</button>
+            {copyMessage !== "" && <p className="pt-2">{copyMessage}</p>}
+          </div>
         </div>
       }
     </>
