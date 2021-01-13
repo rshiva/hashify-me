@@ -33,7 +33,7 @@ export const Home: React.FC = () => (
       </div>
     </div>
 
-    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8 py-4">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
@@ -69,7 +69,7 @@ export const Home: React.FC = () => (
       </div>
     </div>
 
-    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8 py-4">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">

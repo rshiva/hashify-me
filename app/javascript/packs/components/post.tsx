@@ -115,7 +115,7 @@ export const Post: React.FC<PostProps> = (props) => {
                                             <div className="md:flex md:items-center mb-6">
                                                 <div className="md:w-1/3">
                                                     <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
-                                                        Salt
+                                                        Enter your passcode:
                                             </label>
                                                 </div>
                                                 <div className="md:w-2/3">
@@ -137,15 +137,12 @@ export const Post: React.FC<PostProps> = (props) => {
                             }
                         </div>
                     }
-                    {reveal !== "" ?
+                    {reveal !== "" &&
                         <div className="w-full px-4 flex items-center justify-center">
-                            <div className="border border-black p-6">
+                            <div className="border-2 border-black p-6 rounded-lg">
                                 {reveal}
                             </div>
                         </div>
-                        :
-                        <div>{error}</div>
-
                     }
                 </div>
             </div>

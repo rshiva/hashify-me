@@ -52,8 +52,8 @@ const PostForm: React.FC<PostProps> = (props) => {
 
     try {
       const successful = document.execCommand('copy');
-      const message = successful ? 'successful' : 'unsuccessful';
-      setMessage('Copy url command was ' + message + ' You can now share this url.');
+      const message = successful ? 'successfully' : 'unsuccessfully';
+      setMessage('The url was copied ' + message + '.');
     } catch (err) {
       setMessage('Oops, unable to copy');
     }
@@ -137,11 +137,13 @@ const PostForm: React.FC<PostProps> = (props) => {
             </div>
           </div>
         </form> :
-        <div className="border border-black p-6">
-          Shareable URL:
-          <p ref={clipboard}>{`https://hashify.app/secret/${post.url_token}`}</p>
-          <button onClick={copyToClipboard} className="btn-primary">Copy to Clipboard</button>
-          {copyMessage !== "" && <p>{copyMessage}</p>}
+        <div>
+          <h3 className="py-4 font-lg">Shareable URL:</h3>
+          <div className="border-2 border-black p-6 rounded-lg">
+            <p className="pb-2" ref={clipboard}>{`https://hashify.app/secret/${post.url_token}`}</p>
+            <button onClick={copyToClipboard} className="btn-primary pt-2">Copy to Clipboard</button>
+            {copyMessage !== "" && <p className="pt-2">{copyMessage}</p>}
+          </div>
         </div>
       }
     </>
