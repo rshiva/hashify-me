@@ -33,7 +33,7 @@ export const Home: React.FC = () => (
       </div>
     </div>
 
-    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8 py-4">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
@@ -63,17 +63,17 @@ export const Home: React.FC = () => (
         </div>
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917421/hashify-screenshot_pkxx3v.png" />
+            <img className="rounded-lg" src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917421/hashify-screenshot_pkxx3v.png" />
           </div>
         </div>
       </div>
     </div>
 
-    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8 py-4">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917775/discord-screenshot_qld5ww.png" />
+            <img className="rounded-lg" src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917775/discord-screenshot_qld5ww.png" />
           </div>
         </div>
         <div className="w-1/2 sm:w-full px-4">
