@@ -2,7 +2,7 @@ development:
   host: 127.0.0.1
 
 staging:
-  host: ENV['REDIS_URL']
+  host: <%= ENV['REDIS_URL'] %>
 
 production:
-  host: ENV['REDIS_URL']
+  host: <%= ENV['REDIS_URL'] %>
