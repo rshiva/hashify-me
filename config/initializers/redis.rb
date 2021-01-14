@@ -1,2 +1,3 @@
 $redis = Redis.new(host: Rails.application.config_for(:redis)[:host],
-                   timeout: 10)
+                  ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE },
+                  timeout: 10)
