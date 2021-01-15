@@ -13,6 +13,7 @@
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "mixpanel-browser": "^2.40.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-copy-to-clipboard": "^5.0.2",
