@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState, useRef } from "react";
+import { mixpanelClient } from "../analytics";
 
 interface PostProps {
   body: string;
@@ -8,6 +9,9 @@ interface PostProps {
   url_token?: string;
   has_salt: boolean;
 }
+
+const mixpanelToken = process.env.MIXPANEL_TOKEN;
+console.log(mixpanelToken);
 
 const PostForm: React.FC<PostProps> = (props) => {
   const [post, setPost] = useState(props);
@@ -37,9 +41,11 @@ const PostForm: React.FC<PostProps> = (props) => {
     createPost(post).then((response) => {
       setStatus('success');
       setPost(response.data);
+      mixpanelClient.track("Secret created successfully");
       return response.data;
     }).catch(error => {
       setError(error);
+      mixpanelClient.track("Secret creation error");
       console.error(error);
     })
   }
