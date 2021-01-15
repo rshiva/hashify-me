@@ -10,9 +10,6 @@ interface PostProps {
   has_salt: boolean;
 }
 
-const mixpanelToken = process.env.MIXPANEL_TOKEN;
-console.log(mixpanelToken);
-
 const PostForm: React.FC<PostProps> = (props) => {
   const [post, setPost] = useState(props);
   const [status, setStatus] = useState("");
