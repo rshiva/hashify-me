@@ -20,6 +20,9 @@ class HashifyDiscordBot
         description = "How to use Hashify \n /hashify -m Message goes here -s optional salt key -e 2/12/24 hours"
         send_error_embed(event,title: title, description: description)
       elsif parse_message(args).has_key?(:body)
+        message_id = event.message.id
+        #delete message from chat
+        event.channel.delete_message(message_id)
         send_success_embed(event,args)
       else
         title = "Psst! Wrong Formatting. Help is below"
@@ -41,7 +44,7 @@ class HashifyDiscordBot
       expiry_end = args.size - 1
       given_time_range = EXPIRE_IN.include?(args[expiry_start].to_i)
       if given_time_range
-        args = args.reject(&:blank?)
+        # args = args.reject(&:blank?)
         message_start = args.index("-m") + 1
         message_end = (args.index("-s") || args.index("-e")) - 1
     
@@ -64,7 +67,8 @@ class HashifyDiscordBot
 def send_success_embed(event, args)
   message = parse_message(args)
   @options = { headers: { "Content-Type" => "application/json" } }
-  body = {body: {body: message[:body],salty_password: message[:salt], expired_at: message[:expiry]}.to_json}
+  has_salt = message[:salt].nil? ? false : true
+  body = {body: {body: message[:body],salty_password: message[:salt], expired_at: message[:expiry], has_salt: has_salt}.to_json}
   @options.merge!(body)
 
   response = HTTParty.post(@base_url+"posts/", @options)
