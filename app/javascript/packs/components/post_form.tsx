@@ -1,9 +1,6 @@
 import * as React from "react";
 import { useState, useRef } from "react";
-import mixpanel from 'mixpanel-browser';
-const mixpanelToken = process.env.MIXPANEL_TOKEN;
-
-export const mixpanelClient = mixpanel.init(mixpanelToken);
+import { trackEvent } from '../analytics';
 
 interface PostProps {
   body: string;
@@ -41,15 +38,11 @@ const PostForm: React.FC<PostProps> = (props) => {
     createPost(post).then((response) => {
       setStatus('success');
       setPost(response.data);
-      if (process.env.NODE_ENV === "production") {
-        mixpanelClient.track("Secret created successfully");
-      }
+      trackEvent("Secret created - Success");
       return response.data;
     }).catch(error => {
       setError(error);
-      if (process.env.NODE_ENV === "production") {
-        mixpanelClient.track("Secret creation error");
-      }
+      trackEvent("Secret created - Error");
       console.error(error);
     })
   }
@@ -63,8 +56,10 @@ const PostForm: React.FC<PostProps> = (props) => {
     try {
       const successful = document.execCommand('copy');
       const message = successful ? 'successfully' : 'unsuccessfully';
+      trackEvent("Message copied - Success");
       setMessage('The url was copied ' + message + '.');
     } catch (err) {
+      trackEvent("Message copied - Error");
       setMessage('Oops, unable to copy');
     }
     window.getSelection().removeAllRanges();
