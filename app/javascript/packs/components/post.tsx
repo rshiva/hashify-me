@@ -3,7 +3,10 @@ import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Header } from "./header";
 import { Footer } from "./footer";
-import { mixpanelClient } from "../analytics";
+import mixpanel from 'mixpanel-browser';
+const mixpanelToken = process.env.MIXPANEL_TOKEN;
+
+export const mixpanelClient = mixpanel.init(mixpanelToken);
 
 interface PostProps {
     body: string;
@@ -84,7 +87,9 @@ export const Post: React.FC<PostProps> = (props) => {
         try {
             const getReveal = await fetchReveal(slug);
             setReveal(getReveal.data);
-            mixpanelClient.track("Secret revealed successfully", {"password": false});
+            if (process.env.NODE_ENV === "production") {
+                mixpanelClient.track("Secret revealed successfully", {"password": false});
+            }
             return getReveal.data;
         }
         catch (error) {
@@ -95,7 +100,9 @@ export const Post: React.FC<PostProps> = (props) => {
     async function handleReveal(ev: React.FormEvent) {
         ev.preventDefault();
         const getReveal = await revealWithSalt(slug, post.salty_password);
-        mixpanelClient.track("Secret revealed successfully", {"password": true});
+        if (process.env.NODE_ENV === "production") {
+            mixpanelClient.track("Secret revealed successfully", {"password": true});
+        }
         setReveal(getReveal.data);
     }
 
