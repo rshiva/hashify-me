@@ -95,7 +95,6 @@ export const Post: React.FC<PostProps> = (props) => {
     async function handleReveal(ev: React.FormEvent) {
         ev.preventDefault();
         const getReveal = await revealWithSalt(slug, post.salty_password);
-        trackEvent("Secret revealed - Success", { "password": true });
         setReveal(getReveal.data);
     }
 
