@@ -15,11 +15,6 @@ export const Home: React.FC = () => (
     </h1>
     <div className="font-body font-normal text-xl container -my-6 mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 sm:w-full p-6 my-4">
-          <div className="md:flex md:items-center mb-6">
-            <Freelancer />
-          </div>
-        </div>
         <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
           <p>
             It's really easy to share secrets on your favourite messenger.
@@ -29,19 +24,25 @@ export const Home: React.FC = () => (
             we generate a link that self destructs after the specified time or as soon as it's viewed.
           </p>
         </div>
+
+        <div className="w-1/2 sm:w-full p-6 my-4">
+          <div className="md:flex md:items-center mb-6">
+            <Freelancer />
+          </div>
+        </div>
       </div>
     </div>
 
     <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
-          <PostForm body="" expired_at="2 hrs" has_salt={false} salty_password={""} />
-        </div>
-
-        <div className="w-1/2 sm:w-full p-6 my-4">
+      <div className="w-1/2 sm:w-full p-6 my-4">
           <div className="md:flex md:items-center mb-6">
             <ChatBot />
           </div>
+        </div>
+
+        <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
+          <PostForm body="" expired_at="2 hrs" has_salt={false} salty_password={""} />
         </div>
       </div>
     </div>
