@@ -140,7 +140,7 @@ export const Post: React.FC<PostProps> = (props) => {
                         </div>
                     }
                     {reveal !== "" &&
-                        <div className="w-full px-4 flex items-center justify-center">
+                        <div className="w-full px-4 flex items-center justify-center animated-reveal">
                             <div className="border-2 border-black p-6 rounded-lg">
                                 {reveal}
                             </div>

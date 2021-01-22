@@ -96,8 +96,9 @@ export const Home: React.FC = () => (
           </div>
           <div className="md:flex md:items-center mb-6">
             <SyntaxHighlighter language="shell" style={docco}>
-              /hashify -m Message goes here -s optional salt key -e 2/12/24
-              hours
+              {/* /hashify -m Message goes here -s optional salt key -e 2/12/24
+              hours */}
+              Coming Soon
             </SyntaxHighlighter>
           </div>
         </div>
