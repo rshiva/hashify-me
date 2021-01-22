@@ -22,13 +22,26 @@ export const Home: React.FC = () => (
         </div>
         <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
           <p>
-            It's really easy to share secrets on your favourite chatting
-            software. However, every time you do it, it lives in the database of
-            those chat companies forever, exposing you to potential security
-            risks. When you submit the form below or use our app / bot for your
-            respective platforms, we generate a link that self destructs after
-            the specified time.
+            It's really easy to share secrets on your favourite messenger.
+            However, every time you do it, it lives in the database of
+            those companies forever, exposing you to potential security
+            risks. When you submit the form below or use one of our app / bot / browser extensions,
+            we generate a link that self destructs after the specified time or as soon as it's viewed.
           </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+      <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
+        <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
+          <PostForm body="" expired_at="2 hrs" has_salt={false} salty_password={""} />
+        </div>
+
+        <div className="w-1/2 sm:w-full p-6 my-4">
+          <div className="md:flex md:items-center mb-6">
+            <ChatBot />
+          </div>
         </div>
       </div>
     </div>
@@ -105,15 +118,26 @@ export const Home: React.FC = () => (
       </div>
     </div>
 
-    <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8 py-4">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
-          <PostForm body="" expired_at="2 hrs" has_salt={false} salty_password={""} />
-        </div>
-
-        <div className="w-1/2 sm:w-full p-6 my-4">
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <ChatBot />
+            <p>
+              Share secrets from the comfort of your browser. We're working on
+              creating a chrome extension that will easily become part of your
+              daily workflow, so that you would never have to just paste a secret
+              anywhere anymore.
+            </p>
+          </div>
+          <div className="md:flex md:items-center mb-6">
+            <SyntaxHighlighter language="shell" style={docco}>
+              Coming Soon
+            </SyntaxHighlighter>
+          </div>
+        </div>
+        <div className="w-1/2 sm:w-full px-4">
+          <div className="md:flex md:items-center mb-6">
+            <img className="w-1/2" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg" />
           </div>
         </div>
       </div>
