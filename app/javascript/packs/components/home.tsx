@@ -106,8 +106,10 @@ export const Home: React.FC = () => (
           <div className="md:flex md:items-center mb-6">
             <p>
               If you use discord, you can use our discord bot directly. using
-              the command below. The format is divided into - 1. The message, 2.
-              an optional passcode, 3. Time in hours with 3 options of 2/12/24.
+              the command below. The format is divided into - <br/>
+              1. The message <br/>
+              2. An optional passcode <br/>
+              3. Time in hours with 3 options of 2/12/24. <br/>
               We recommend the time to be as less as possible.
             </p>
           </div>
