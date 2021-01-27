@@ -90,19 +90,14 @@ export const Home: React.FC = () => (
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <img className="rounded-lg" src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917775/discord-screenshot_qld5ww.png" />
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-full px-4">
-          <div className="md:flex md:items-center mb-6">
-            <img
-              className="max-h-sm"
+          <img
+              className="rounded-lg h-auto"
               alt="Add to Discord"
-              height="40"
-              width="139"
               src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604224578/Discord-Logo_Wordmark-Color_noetmj.svg"
             />
           </div>
+        </div>
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
             <p>
               If you use discord, you can use our discord bot directly. using
