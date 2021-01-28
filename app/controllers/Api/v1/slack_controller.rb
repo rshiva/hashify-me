@@ -1,10 +1,12 @@
 class Api::V1::SlackController < ApplicationController
 
-  def authorization
-    slack = SlackApiClient.new()
-    slack.authorize(code: params[:code])
-    render json: {body: {message: "Authorization was called"}}
-  end
+  # def authorization
+  #   slack = SlackApiClient.new()
+  #   slack.authorize(code: params[:code])
+  #   # render json: {body: {message: "Authorization was called"}}
+  #   head :ok, location: "http://localhost:3000"
+
+  # end
 
   def slashcommand
     view_modal = JSON.load(Rails.root.join('app/views/Api/v1/slack/view_open.json'))
