@@ -2,6 +2,8 @@ class Post
   include ActiveModel::Validations
   include Generator
 
+  EXPIRE_IN = [2, 12, 24]
+
   # id           
   # body          mandatory 
   # salty_password  optional
@@ -18,7 +20,7 @@ class Post
     post = new.tap do |p|
       salty_password = post_params[:has_salt] ? post_params[:salty_password] : ''
       p.body = self.ciphered(post_params[:body], salty_password)
-      p.expired_at = time_to_sec(post_params[:expired_at].to_i) if post_params[:expired_at]
+      p.expired_at = time_to_sec(EXPIRE_IN[post_params[:expired_at].to_i]) if post_params[:expired_at]
       p.salty_password = self.generate_salt(salty_password)
       p.has_salt = post_params[:has_salt]
       p.url_token = self.generate_url_token
