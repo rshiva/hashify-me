@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => (
         >
           Contact
         </NavLink>
-        <a href="https://twitter.com/share?text=Share Sensitive Data Securely with @hashify_app&url=Hashify.app" 
+        <a href="https://twitter.com/share?text=I'm using hashify to share sensitive data securely&url=Hashify.app" 
            target="_blank"
            className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link">
         Share on Twitter</a>
