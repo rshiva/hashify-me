@@ -129,9 +129,9 @@ const PostForm: React.FC<PostProps> = (props) => {
                 }
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
               >
-                <option value="2 hrs">2 hrs</option>
-                <option value="12 hrs">12 hrs</option>
-                <option value="24 hrs">24 hrs</option>
+                <option value="2">2 hrs</option>
+                <option value="12">12 hrs</option>
+                <option value="24">24 hrs</option>
               </select>
             </div>
           </div>
