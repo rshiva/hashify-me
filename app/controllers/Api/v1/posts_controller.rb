@@ -5,11 +5,11 @@ class Api::V1::PostsController < ApplicationController
   def create
     render json: {error: {error_type: "validation", error_message: "params missing"}}, status: 422 and return if post_params[:body].empty?
     post = Post.create(post_params)
-    if post
+    if post.valid? 
       post_hash = PostSerializer.new(post).serializable_hash
       render json: {data: post_hash[:data][:attributes]}, status: 200
     else
-      render json: {error: {error_type: "validation", error_message: "params missing"}}, status: 422
+      render json: {error: {error_type: "validation", error_message: post.errors.full_messages.join(" ")}}, status: 422
     end
   end
 

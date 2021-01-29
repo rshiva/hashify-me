@@ -1,100 +1,99 @@
 {
-	"title": {
-		"type": "plain_text",
-		"text": "hashify.me"
-	},
-	"submit": {
-		"type": "plain_text",
-		"text": "Submit"
-	},
-	"blocks": [
-		{
-			"type": "input",
-			"block_id": "message_id",
-			"element": {
-				"type": "plain_text_input",
-				"action_id": "ml_input",
-				"multiline": true,
-				"placeholder": {
-					"type": "plain_text",
-					"text": "Your secret message"
-				}
-			},
-			"label": {
-				"type": "plain_text",
-				"text": "Message"
-			},
-			"hint": {
-				"type": "plain_text",
-				"text": "Hint text"
-			}
-		},
-		{
-			"type": "input",
-			"block_id": "salt_id",
-			"optional": true,
-			"element": {
-				"type": "plain_text_input",
-				"action_id": "sl_input",
-				"placeholder": {
-					"type": "plain_text",
-					"text": "Sprinkle some salt"
-				}
-			},
-			"label": {
-				"type": "plain_text",
-				"text": "Salt"
-			},
-			"hint": {
-				"type": "plain_text",
-				"text": "Sprinkle some salt to make it more secure"
-			}
-		},
-		{
-			"type": "input",
-			"dispatch_action": false,
-			"block_id": "expiry_id",
-			"label": {
-				"type": "plain_text",
-				"text": "Pick a time to self destruct the message"
-			},
-			"element": {
-				"type": "static_select",
-				"action_id": "selected_expiry",
-				"placeholder": {
-					"type": "plain_text",
-					"text": "Select a time",
-					"emoji": true
-				},
-				"options": [
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "In 1 hour",
-							"emoji": true
-						},
-						"value": "0"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "In 12 hours",
-							"emoji": true
-						},
-						"value": "1"
-					},
-					{
-						"text": {
-							"type": "plain_text",
-							"text": "In 24 hours",
-							"emoji": true
-						},
-						"value": "2"
-					}
-				]
-			
-			}
-		}
-	],
-	"type": "modal"
+  "title": {
+    "type": "plain_text",
+    "text": "hashify.me"
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit"
+  },
+  "blocks": [
+    {
+      "type": "input",
+      "block_id": "message_id",
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "ml_input",
+        "multiline": true,
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Your secret message"
+        }
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Message"
+      },
+      "hint": {
+        "type": "plain_text",
+        "text": "Hint text"
+      }
+    },
+    {
+      "type": "input",
+      "block_id": "salt_id",
+      "optional": true,
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "sl_input",
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Sprinkle some salt"
+        }
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Salt"
+      },
+      "hint": {
+        "type": "plain_text",
+        "text": "Sprinkle some salt to make it more secure"
+      }
+    },
+    {
+      "type": "input",
+      "dispatch_action": false,
+      "block_id": "expiry_id",
+      "label": {
+        "type": "plain_text",
+        "text": "Pick a time to self destruct the message"
+      },
+      "element": {
+        "type": "static_select",
+        "action_id": "selected_expiry",
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Select a time",
+          "emoji": true
+        },
+        "options": [
+          {
+            "text": {
+              "type": "plain_text",
+              "text": "In 2 hours",
+              "emoji": true
+            },
+            "value": "2"
+          },
+          {
+            "text": {
+              "type": "plain_text",
+              "text": "In 12 hours",
+              "emoji": true
+            },
+            "value": "12"
+          },
+          {
+            "text": {
+              "type": "plain_text",
+              "text": "In 24 hours",
+              "emoji": true
+            },
+            "value": "24"
+          }
+        ]
+      }
+    }
+  ],
+  "type": "modal"
 }

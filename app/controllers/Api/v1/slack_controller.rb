@@ -1,11 +1,5 @@
 class Api::V1::SlackController < ApplicationController
 
-  def authorization
-    slack = SlackApiClient.new()
-    slack.authorize(code: params[:code])
-    render json: {body: {message: "Authorization was called"}}
-  end
-
   def slashcommand
     view_modal = JSON.load(Rails.root.join('app/views/Api/v1/slack/view_open.json'))
     slack = SlackApiClient.new()
@@ -29,7 +23,7 @@ class Api::V1::SlackController < ApplicationController
       #Make response message better
       # make the url correct for prod
       # unable to append channed_id, instead sending the private message to hashify. shouldnt the link be avaliable in private chat?
-      url = "https://"+request.subdomains[0]+"."+request.domain + "/v1/secret?token=#{post_hash[:data][:id]}"
+      url = "https://"+request.subdomains[0]+"."+request.domain + "/secret/#{post_hash[:data][:id]}"
       res = slack.post_message(channel: Rails.application.config_for(:slack)[:channel_id],text: "Use this link to share the secret message created.\n <#{url}| Secret URL>")
       head :ok
     end

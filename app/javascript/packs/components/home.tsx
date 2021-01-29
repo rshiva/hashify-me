@@ -54,7 +54,7 @@ export const Home: React.FC = () => (
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <a href="https://slack.com/oauth/v2/authorize?client_id=1457351754660.1444473716470&scope=chat:write,commands&user_scope=">
+            <a href="https://slack.com/oauth/v2/authorize?client_id=1457351754660.1624709351138&scope=chat:write,commands&user_scope=">
               <img
                 alt="Add to Slack"
                 height="40"
@@ -100,10 +100,8 @@ export const Home: React.FC = () => (
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
             <p>
-              If you use discord, you can use our discord bot directly. using
-              the command below. The format is divided into - 1. The message, 2.
-              an optional passcode, 3. Time in hours with 3 options of 2/12/24.
-              We recommend the time to be as less as possible.
+              Soon discord bot will help you send important message encrypted seemlessly.
+              So that you don't have to leave the platform while having crucial conversation.
             </p>
           </div>
           <div className="md:flex md:items-center mb-6">
