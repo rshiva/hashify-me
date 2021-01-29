@@ -73,7 +73,7 @@
               "text": "In 2 hours",
               "emoji": true
             },
-            "value": "0"
+            "value": "2"
           },
           {
             "text": {
@@ -81,7 +81,7 @@
               "text": "In 12 hours",
               "emoji": true
             },
-            "value": "1"
+            "value": "12"
           },
           {
             "text": {
@@ -89,7 +89,7 @@
               "text": "In 24 hours",
               "emoji": true
             },
-            "value": "2"
+            "value": "24"
           }
         ]
       }
