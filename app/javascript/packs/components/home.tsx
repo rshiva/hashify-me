@@ -54,7 +54,7 @@ export const Home: React.FC = () => (
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <a href="https://slack.com/oauth/v2/authorize?client_id=1457351754660.1444473716470&scope=chat:write,commands,channels:read&user_scope=channels:write,chat:write,channels:read">
+            <a href="https://slack.com/oauth/v2/authorize?client_id=1457351754660.1444473716470&scope=chat:write,commands&user_scope=">
               <img
                 alt="Add to Slack"
                 height="40"
