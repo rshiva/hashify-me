@@ -128,6 +128,7 @@ export const Post: React.FC<PostProps> = (props) => {
                                                         onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
                                                             setPost({ ...post, salty_password: ev.target.value })
                                                         }
+                                                        required
                                                     />
                                                 </div>
                                             </div>
