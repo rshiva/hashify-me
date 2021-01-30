@@ -55,6 +55,10 @@ export const Navbar: React.FC = () => (
            target="_blank"
            className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link">
         Share on Twitter</a>
+        <a href=""
+           target="_blank"
+           className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link">
+        Buy us a Coffee</a>
       </div>
     </div>
   </nav>
