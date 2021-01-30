@@ -2,8 +2,8 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 
 const toggleMenu = (event) => {
-  document.querySelector("#burger").classList.toggle("sm:block");
-  document.querySelector("#toggleNav").classList.toggle("sm:hidden");
+  document.querySelector("#burger").classList.toggle("block");
+  document.querySelector("#toggleNav").classList.toggle("hidden");
 };
 
 export const Navbar: React.FC = () => (
@@ -18,13 +18,12 @@ export const Navbar: React.FC = () => (
         Hashify
       </NavLink>
     </div>
-    <div className="block lg:hidden">
+    <div id="burger" className="block lg:hidden">
       <button
-        className="navbar-burger flex items-center px-3 py-2 border rounded border-ls-blue-jeans hover: hover:border-white"
+        className="flex items-center px-3 py-2 border rounded border-ls-blue-jeans hover:border-white"
         aria-label="menu"
         aria-expanded="false"
-        id="burger"
-        onClick={(event) => toggleMenu(event)}
+        onClick={toggleMenu}
       >
         <svg
           className="fill-current h-3 w-3 sm:w-10 sm:h-10"
@@ -41,7 +40,7 @@ export const Navbar: React.FC = () => (
     </div>
     <div
       id="toggleNav"
-      className="navbar-menu w-full sm:block flex-grow lg:flex lg:items-center lg:w-auto sm:hidden md:hidden"
+      className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block"
     >
       <div className="lg:flex-grow"></div>
       <div>
@@ -56,6 +55,10 @@ export const Navbar: React.FC = () => (
            target="_blank"
            className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link">
         Share on Twitter</a>
+        <a href=""
+           target="_blank"
+           className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link">
+        Buy us a Coffee</a>
       </div>
     </div>
   </nav>
