@@ -35,6 +35,15 @@ $ rails s
 $ yarn watch
 ```
 
+Alternatively you can start your server using foreman. Do not add foreman to the Gemfile - 
+
+```
+$ gem install foreman
+$ foreman start -f Procfile.dev
+```
+
+Foreman plays much nicer with environment vars across react and rails.
+
 ### List of APIs
 
 | Method | Params |  Parameters | description

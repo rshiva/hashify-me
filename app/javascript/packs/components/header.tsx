@@ -3,7 +3,8 @@ import { Navbar } from "./navbar";
 import { HeroBanner } from "./hero_banner";
 
 interface Props {
-  img: string;
+  page: string;
+  title: string;
 }
 
 export const Header: React.FC<Props> = (props: Props) => (
@@ -11,6 +12,6 @@ export const Header: React.FC<Props> = (props: Props) => (
     <header>
       <Navbar />
     </header>
-    <HeroBanner img={props.img} />
+    <HeroBanner page={props.page} title={props.title} />
   </>
 );
