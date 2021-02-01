@@ -111,7 +111,7 @@ const PostForm: React.FC<PostProps> = (props) => {
                 type="text"
                 name="post[salty_password]"
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
-                placeholder="Your salt"
+                placeholder="Your Passcode"
                 value={post.salty_password}
                 disabled={!post.has_salt}
                 onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
