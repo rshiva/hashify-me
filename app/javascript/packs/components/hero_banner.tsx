@@ -43,13 +43,13 @@ export const HeroBanner: React.FC<Props> = (props: Props) => (
           props.title :
           <>
             Share
-          <Typed style={{ color: '#e85c37', paddingLeft: '12px' }}
-              strings={['Message', 'Secret', 'OTP', 'Password']}
-              typeSpeed={40}
-              backSpeed={40}
-              loop
-            />
-         Securely
+            <Typed style={{ color: '#e85c37', paddingLeft: '12px' }}
+                strings={['Message', 'Secret', 'OTP', 'Password']}
+                typeSpeed={40}
+                backSpeed={40}
+                loop
+              />
+            Securely
           </>
         }
         <br />
