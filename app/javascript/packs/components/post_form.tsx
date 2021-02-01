@@ -35,6 +35,10 @@ const PostForm: React.FC<PostProps> = (props) => {
 
   function submitForm(ev: React.FormEvent) {
     ev.preventDefault();
+    if(post.has_salt && post.salty_password.length <= 0){
+      alert("Passcode can't be empty");
+      return console.error("Passcode can't be empty");
+    }
     createPost(post).then((response) => {
       setStatus('success');
       setPost(response.data);
@@ -46,6 +50,7 @@ const PostForm: React.FC<PostProps> = (props) => {
       console.error(error);
     })
   }
+
 
   const copyToClipboard = () => {
     window.getSelection().removeAllRanges();
@@ -83,6 +88,7 @@ const PostForm: React.FC<PostProps> = (props) => {
                 rows={5}
                 cols={20}
                 value={post.body}
+                required
                 onChange={(ev) => setPost({ ...post, body: ev.target.value })}
               />
             </div>

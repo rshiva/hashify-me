@@ -4,7 +4,7 @@ import { HeroBanner } from "./hero_banner";
 
 interface Props {
   page: string;
-  // title: string;
+  title?: string;
 }
 
 export const Header: React.FC<Props> = (props: Props) => (

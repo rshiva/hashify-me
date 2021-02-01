@@ -25,7 +25,7 @@ const fetchPost = async (slug: string): Promise<PostProps> => {
         },
     });
     if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Message does not exist or already viewed: ${response.status}`);
     } else {
         return await response.json();
     }
@@ -54,7 +54,7 @@ const revealWithSalt = async (id: string, salty_password: string): Promise<Revea
         body: JSON.stringify({ salty_password }),
     });
     if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        console.log("response",response.status)
     } else {
         return await response.json();
     }
@@ -65,6 +65,8 @@ export const Post: React.FC<PostProps> = (props) => {
     const [reveal, setReveal] = useState("");
     const [error, setError] = useState("");
     const [post, setPost] = useState(props);
+    const [alert, setAlert] = useState("invisible sm:invisible")
+    const [apiResponse, setApiResponse] = useState("");
 
     const revealForm = useRef(null);
 
@@ -95,7 +97,14 @@ export const Post: React.FC<PostProps> = (props) => {
     async function handleReveal(ev: React.FormEvent) {
         ev.preventDefault();
         const getReveal = await revealWithSalt(slug, post.salty_password);
-        setReveal(getReveal.data);
+        if(getReveal){
+            setAlert("invisible sm:invisible  md:invisible" )
+            setReveal(getReveal.data);
+        }else{
+            setAlert("visible sm:visible  md:visible")
+            setApiResponse("Invalid Passcode")
+        }
+        
     }
 
     return (
@@ -104,6 +113,14 @@ export const Post: React.FC<PostProps> = (props) => {
             <h1 className="text-4xl text-center my-4 font-heading">
                 Did someone you know give you this link ?
             </h1>
+            <div role="alert" className={alert}>
+                <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                    Alert
+                </div>
+                <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                    <p>{apiResponse}</p>
+                </div>
+            </div>
             <div id="secret" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
                 <div className="flex flex-wrap sm:w-100">
                     {reveal === "" &&

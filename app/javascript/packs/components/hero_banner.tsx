@@ -9,7 +9,7 @@ import Typed from 'react-typed';
 
 interface Props {
   page: string;
-  // title: string;
+  title?: string;
 }
 
 
