@@ -9,7 +9,7 @@ import { ChatBot } from "./icons/chat_bot";
 
 export const Home: React.FC = () => (
   <>
-    <Header page="home" title="Share your secrets securely." />
+    <Header page="home"/>
     <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <h1 className="text-4xl text-center my-4 font-heading">
         Start Sharing

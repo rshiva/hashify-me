@@ -64,7 +64,7 @@ const PostForm: React.FC<PostProps> = (props) => {
     }
     window.getSelection().removeAllRanges();
   };
-  
+
   return (
     <>
       {status !== "success" ?
@@ -83,6 +83,7 @@ const PostForm: React.FC<PostProps> = (props) => {
                 rows={5}
                 cols={20}
                 value={post.body}
+                required
                 onChange={(ev) => setPost({ ...post, body: ev.target.value })}
               />
             </div>
@@ -105,8 +106,9 @@ const PostForm: React.FC<PostProps> = (props) => {
                 type="text"
                 name="post[salty_password]"
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
-                placeholder="Your salt"
+                placeholder="Your Passcode"
                 value={post.salty_password}
+                required={post.has_salt}
                 disabled={!post.has_salt}
                 onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
                   setPost({ ...post, salty_password: ev.target.value })
