@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useRef, useEffect} from 'react';
+import { useRef, useEffect } from 'react';
 import { Collaboration } from "./icons/collaboration";
 import { ContactUs } from "./icons/contact_us";
 import { HashLink as Link } from 'react-router-hash-link';
@@ -39,14 +39,19 @@ export const HeroBanner: React.FC<Props> = (props: Props) => (
   <div className="flex flex-column w-full border-b-1 bg-maize-crayola">
     <div className="w-1/2 md:w-full md:py-4 sm:w-full sm:py-4 flex items-center text-center justify-center">
       <h1 className="text-5xl font-heading">
-        Share 
-         <Typed style={{color: '#e85c37', paddingLeft: '12px'}}
-            strings={['Message','Secret','OTP', 'Password']}
-            typeSpeed={40}
-            backSpeed={40}
-            loop
-          />
-        Securely
+        {props.title ?
+          props.title :
+          <>
+            Share
+          <Typed style={{ color: '#e85c37', paddingLeft: '12px' }}
+              strings={['Message', 'Secret', 'OTP', 'Password']}
+              typeSpeed={40}
+              backSpeed={40}
+              loop
+            />
+         Securely
+          </>
+        }
         <br />
         {buttonLink(props.page)}
       </h1>

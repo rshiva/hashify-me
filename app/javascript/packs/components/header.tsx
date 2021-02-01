@@ -12,6 +12,6 @@ export const Header: React.FC<Props> = (props: Props) => (
     <header>
       <Navbar />
     </header>
-    <HeroBanner page={props.page} />
+    <HeroBanner page={props.page} title={props.title} />
   </>
 );
