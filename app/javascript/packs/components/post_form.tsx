@@ -35,10 +35,6 @@ const PostForm: React.FC<PostProps> = (props) => {
 
   function submitForm(ev: React.FormEvent) {
     ev.preventDefault();
-    if(post.has_salt && post.salty_password.length <= 0){
-      alert("Passcode can't be empty");
-      return console.error("Passcode can't be empty");
-    }
     createPost(post).then((response) => {
       setStatus('success');
       setPost(response.data);
@@ -113,6 +109,7 @@ const PostForm: React.FC<PostProps> = (props) => {
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
                 placeholder="Your Passcode"
                 value={post.salty_password}
+                required={post.has_salt}
                 disabled={!post.has_salt}
                 onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
                   setPost({ ...post, salty_password: ev.target.value })

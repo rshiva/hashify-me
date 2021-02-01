@@ -54,7 +54,7 @@ const revealWithSalt = async (id: string, salty_password: string): Promise<Revea
         body: JSON.stringify({ salty_password }),
     });
     if (!response.ok) {
-        console.log("response",response.status)
+        console.log("response", response.status)
     } else {
         return await response.json();
     }
@@ -97,14 +97,14 @@ export const Post: React.FC<PostProps> = (props) => {
     async function handleReveal(ev: React.FormEvent) {
         ev.preventDefault();
         const getReveal = await revealWithSalt(slug, post.salty_password);
-        if(getReveal){
-            setAlert("invisible sm:invisible  md:invisible" )
+        if (getReveal) {
+            setAlert("invisible sm:invisible  md:invisible")
             setReveal(getReveal.data);
-        }else{
-            setAlert("visible sm:visible  md:visible")
+        } else {
+            setAlert("visible sm:visible  md:visible text-center w-1/2 sm:w-full md:w-full m-0 m-auto sm:py-4 md:py-4")
             setApiResponse("Invalid Passcode")
         }
-        
+
     }
 
     return (
