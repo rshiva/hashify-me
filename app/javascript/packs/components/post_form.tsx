@@ -47,7 +47,6 @@ const PostForm: React.FC<PostProps> = (props) => {
     })
   }
 
-
   const copyToClipboard = () => {
     window.getSelection().removeAllRanges();
     const range = document.createRange();
@@ -65,7 +64,7 @@ const PostForm: React.FC<PostProps> = (props) => {
     }
     window.getSelection().removeAllRanges();
   };
-  
+
   return (
     <>
       {status !== "success" ?
