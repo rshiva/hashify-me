@@ -1,7 +1,7 @@
 {
   "title": {
     "type": "plain_text",
-    "text": "hashify.me"
+    "text": "Hashify"
   },
   "submit": {
     "type": "plain_text",
@@ -38,16 +38,16 @@
         "action_id": "sl_input",
         "placeholder": {
           "type": "plain_text",
-          "text": "Sprinkle some salt"
+          "text": "Your passcode"
         }
       },
       "label": {
         "type": "plain_text",
-        "text": "Salt"
+        "text": "Passcode"
       },
       "hint": {
         "type": "plain_text",
-        "text": "Sprinkle some salt to make it more secure"
+        "text": "Add Passcode to make it more secure"
       }
     },
     {
@@ -56,7 +56,7 @@
       "block_id": "expiry_id",
       "label": {
         "type": "plain_text",
-        "text": "Pick a time to self destruct the message"
+        "text": "Expiry in"
       },
       "element": {
         "type": "static_select",
