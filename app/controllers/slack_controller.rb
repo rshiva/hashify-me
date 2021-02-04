@@ -18,10 +18,12 @@ class SlackController < ApplicationController
   def add_to_slack_bot_access(response)
     if response['team']['id'] && response['access_token']
       @slack_access = SlackAccessToken.find_by(team_id: response['team']['id'])
-        unless @slack_access.bot_token == response['access_token']
-          @slack_access.bot_token = response['access_token']
-          @slack_access.save!
-        end
+
+      if @slack_access && @slack_access.bot_token != response['access_token']
+        @slack_access.update(bot_token: response['access_token']) and return
+      end
+      SlackAccessToken.create(team_id: response['team']['id'],
+                       bot_token: response['access_token']) if @slack_access.nil?
     end
   end
 end
