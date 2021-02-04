@@ -80,7 +80,7 @@ export const Home: React.FC = () => (
         </div>
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <img className="rounded-lg" src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917421/hashify-screenshot_pkxx3v.png" />
+            <img className="rounded-lg" src="https://res.cloudinary.com/drg9hguhu/image/upload/v1612436589/hashify-slack_kdblkx.png" />
           </div>
         </div>
       </div>

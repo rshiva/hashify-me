@@ -12,6 +12,8 @@ export const Footer: React.FC = () => (
       <a href="https://undraw.co" target="blank">
         &nbsp;Undraw&nbsp;
       </a>
+      &nbsp;/&nbsp;
+      <a href="/privacy-policy">&nbsp;Privacy Policy&nbsp;</a>
     </div>
   </div>
 );
