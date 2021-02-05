@@ -32,6 +32,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'httparty'
 
+group :production do
+  gem "sentry-ruby"
+  gem "sentry-rails"
+end
+
 group :test do
   gem 'database_cleaner-active_record'
 end
