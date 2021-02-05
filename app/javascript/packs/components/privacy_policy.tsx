@@ -2,7 +2,7 @@ import * as React from "react";
 import { Header } from "./header";
 import { Footer } from "./footer";
 
-const iframe = '<iframe src="https://drive.google.com/file/d/1oFcZmN0i99XDPxgY3e4kPeycLVFOYyIb/preview" width="640" height="480"></iframe>';
+const iframe = '<iframe src="https://docs.google.com/document/d/1p4xpEO9oqlQtLFjxSFYCKYVmPut5_1lixwXsIletfQ0/edit?usp=sharing" width="640" height="480"></iframe>';
 function renderIframe() {
     return {
         __html: iframe
