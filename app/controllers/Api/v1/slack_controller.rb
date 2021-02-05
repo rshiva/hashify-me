@@ -26,7 +26,6 @@ class Api::V1::SlackController < ApplicationController
       slack = SlackApiClient.new()
       slack_access_token = SlackAccessToken.find_by(team_id: response["team"]["id"])
       #Make response message better
-      # unable to append channed_id, instead sending the private message to hashify. shouldnt the link be avaliable in private chat?
       url = "https://"+request.subdomains[0]+"."+request.domain + "/secret/#{post_hash[:data][:id]}"
       res = slack.post_message(channel: user_id ,
                                text: "Use this link to share the secret message created.\n <#{url +'#secret'}| Secret URL>",
