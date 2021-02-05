@@ -86,7 +86,7 @@ export const Post: React.FC<PostProps> = (props) => {
         try {
             const getReveal = await fetchReveal(slug);
             setReveal(getReveal.data);
-            trackEvent("Secret revealed - Success", { "password": false });
+            trackEvent("Secret revealed - Success - NoPasscode");
             return getReveal.data;
         }
         catch (error) {
@@ -98,6 +98,7 @@ export const Post: React.FC<PostProps> = (props) => {
         ev.preventDefault();
         const getReveal = await revealWithSalt(slug, post.salty_password);
         if (getReveal) {
+            trackEvent("Secret revealed - Success - Passcode");
             setAlert("invisible sm:invisible  md:invisible")
             setReveal(getReveal.data);
         } else {
