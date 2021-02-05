@@ -98,6 +98,7 @@ export const Post: React.FC<PostProps> = (props) => {
         ev.preventDefault();
         const getReveal = await revealWithSalt(slug, post.salty_password);
         if (getReveal) {
+            trackEvent("Secret revealed - Success", { "password": true });
             setAlert("invisible sm:invisible  md:invisible")
             setReveal(getReveal.data);
         } else {
