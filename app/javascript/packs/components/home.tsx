@@ -11,7 +11,7 @@ export const Home: React.FC = () => (
   <>
     <Header page="home"/>
     <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
-      <h1 className="text-4xl text-center my-4 font-heading">
+      <h1 className="text-4xl md:text-3xl sm:text-2xl text-center my-4 font-heading">
         Start Sharing
       </h1>
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">

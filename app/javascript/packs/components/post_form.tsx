@@ -71,7 +71,7 @@ const PostForm: React.FC<PostProps> = (props) => {
         <form className="w-full" ref={form} onSubmit={submitForm}>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-xl sm:text-xl md:text-right mb-1 md:mb-0 pr-4">
                 Secret
                   </label>
             </div>
@@ -90,7 +90,7 @@ const PostForm: React.FC<PostProps> = (props) => {
           </div>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black md:text-xl sm:text-xl font-bold md:text-right mb-1 md:mb-0 pr-4">
                 Passcode <br /> ( Enable ) &nbsp;
                 <input
                   name="post[has_salt]"
@@ -118,7 +118,7 @@ const PostForm: React.FC<PostProps> = (props) => {
           </div>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-xl sm:text-xl md:text-right mb-1 md:mb-0 pr-4">
                 Expires in
                   </label>
             </div>
