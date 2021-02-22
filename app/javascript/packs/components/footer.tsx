@@ -1,4 +1,5 @@
 import * as React from "react";
+import { NavLink } from "react-router-dom";
 
 const getYear = () => {
   return new Date().getFullYear();
@@ -13,7 +14,13 @@ export const Footer: React.FC = () => (
         &nbsp;Undraw&nbsp;
       </a>
       &nbsp;/&nbsp;
-      <a href="/privacy-policy">&nbsp;Privacy Policy&nbsp;</a>
+      <NavLink
+        className="text-xl block mt-4 lg:inline-block lg:mt-0 font-title hover:text-white mr-4 navbar-link"
+        to="/privacy-policy"
+        exact
+      >
+        Privacy Policy
+      </NavLink>
     </div>
   </div>
 );
