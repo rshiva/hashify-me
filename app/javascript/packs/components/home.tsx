@@ -9,7 +9,7 @@ import { ChatBot } from "./icons/chat_bot";
 
 export const Home: React.FC = () => (
   <>
-    <Header page="home"/>
+    <Header page="home" />
     <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <h1 className="text-4xl text-center my-4 font-heading">
         Start Sharing
@@ -81,35 +81,6 @@ export const Home: React.FC = () => (
         <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
             <img className="rounded-lg" src="https://res.cloudinary.com/drg9hguhu/image/upload/v1612436589/hashify-slack_kdblkx.png" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8 py-4">
-      <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 sm:w-full px-4">
-          <div className="md:flex md:items-center mb-6">
-          <img
-              className="rounded-lg h-auto"
-              alt="Add to Discord"
-              src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604224578/Discord-Logo_Wordmark-Color_noetmj.svg"
-            />
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-full px-4">
-          <div className="md:flex md:items-center mb-6">
-            <p>
-              Soon discord bot will help you send important message encrypted seemlessly.
-              So that you don't have to leave the platform while having crucial conversation.
-            </p>
-          </div>
-          <div className="md:flex md:items-center mb-6">
-            <SyntaxHighlighter language="shell" style={docco}>
-              {/* /hashify -m Message goes here -s optional salt key -e 2/12/24
-              hours */}
-              Coming Soon
-            </SyntaxHighlighter>
           </div>
         </div>
       </div>
