@@ -20,21 +20,14 @@ class SlackApiClient
   end
 
   def open_view(args)
-    @options = { body: args.merge!(token: Rails.application.config_for(:slack)[:token])}
-    self.class.post('/views.open', @options)
-  end
-
-  def publish_view(args)
     @options = { body: args}
-    @options.merge!(headers: {"Authorization" => "Bearer #{Rails.application.config_for(:slack)[:token]}"})
-    self.class.post('/views.publish',@options)
+    self.class.post('/views.open', @options)
   end
 
   def post_message(args)
     @options = { body: args}
-    @options.merge!(headers: {"Authorization" => "Bearer #{Rails.application.config_for(:slack)[:token]}"})
+    @options.merge!(headers: {"Authorization" => "Bearer #{args[:token]}"})
     self.class.post('/chat.postMessage',@options)
-    
   end
 end
 

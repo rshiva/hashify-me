@@ -6,7 +6,7 @@ export const ContactUs: React.FC = () => {
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width={802}
+      width="100%"
       height={462.415}
       viewBox="0 0 1096 574.74"
     >

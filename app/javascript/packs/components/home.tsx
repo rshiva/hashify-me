@@ -9,35 +9,52 @@ import { ChatBot } from "./icons/chat_bot";
 
 export const Home: React.FC = () => (
   <>
-    <Header page="home" title="Share your secrets securely." />
+    <Header page="home" />
+    <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+      <h1 className="text-4xl md:text-3xl sm:text-2xl text-center my-4 font-heading">
+        Start Sharing
+      </h1>
+      <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
+        <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
+          <PostForm body="" expired_at="2 hrs" has_salt={false} salty_password={""} />
+        </div>
+
+        <div className="w-1/2 sm:w-full p-6 my-4">
+          <div className="md:flex md:items-center mb-6">
+            <ChatBot />
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h1 className="text-4xl text-center my-4 font-heading">
       It's really easy to slip up!
     </h1>
     <div className="font-body font-normal text-xl container -my-6 mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 p-6 my-4">
+        <div className="w-1/2 sm:w-full p-6 my-4">
           <div className="md:flex md:items-center mb-6">
             <Freelancer />
           </div>
         </div>
-        <div className="w-1/2 px-4 flex items-center justify-center">
+
+        <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
           <p>
-            It's really easy to share secrets on your favourite chatting
-            software. However, every time you do it, it lives in the database of
-            those chat companies forever, exposing you to potential security
-            risks. When you submit the form below or use our app / bot for your
-            respective platforms, we generate a link that self destructs after
-            the specified time.
+            It's really easy to share secrets on your favourite messenger.
+            However, every time you do it, it lives in the database of
+            those companies forever, exposing you to potential security
+            risks. When you submit the form below or use one of our app / bot / browser extensions,
+            we generate a link that self destructs after the specified time or as soon as it's viewed.
           </p>
         </div>
       </div>
     </div>
-
-    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+      <br/>
+    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8 py-4">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 px-4">
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <a href="https://slack.com/oauth/v2/authorize?client_id=1457351754660.1444473716470&scope=chat:write,commands&user_scope=">
+            <a href="https://slack.com/oauth/v2/authorize?client_id=1457351754660.1637976902609&scope=chat:write,commands&user_scope=">
               <img
                 alt="Add to Slack"
                 height="40"
@@ -61,58 +78,34 @@ export const Home: React.FC = () => (
             </SyntaxHighlighter>
           </div>
         </div>
-        <div className="w-1/2 px-4">
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917421/hashify-screenshot_pkxx3v.png" />
+            <img className="rounded-lg" src="https://res.cloudinary.com/drg9hguhu/image/upload/v1612436589/hashify-slack_kdblkx.png" />
           </div>
         </div>
       </div>
     </div>
 
-    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
+    <div className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8 py-4">
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 px-4">
-          <div className="md:flex md:items-center mb-6">
-            <img src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604917775/discord-screenshot_qld5ww.png" />
-          </div>
-        </div>
-        <div className="w-1/2 px-4">
-          <div className="md:flex md:items-center mb-6">
-            <img
-              className="max-h-sm"
-              alt="Add to Discord"
-              height="40"
-              width="139"
-              src="https://res.cloudinary.com/drg9hguhu/image/upload/v1604224578/Discord-Logo_Wordmark-Color_noetmj.svg"
-            />
-          </div>
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
             <p>
-              If you use discord, you can use our discord bot directly. using
-              the command below. The format is divided into - 1. The message, 2.
-              an optional passcode, 3. Time in hours with 3 options of 2/12/24.
-              We recommend the time to be as less as possible.
+              Share secrets from the comfort of your browser. We're working on
+              creating a chrome extension that will easily become part of your
+              daily workflow, so that you would never have to just paste a secret
+              anywhere anymore.
             </p>
           </div>
           <div className="md:flex md:items-center mb-6">
             <SyntaxHighlighter language="shell" style={docco}>
-              /hashify -m Message goes here -s optional salt key -e 2/12/24
-              hours
+              Coming Soon
             </SyntaxHighlighter>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div id="hashify" className="font-body font-normal text-xl container mx-auto lg:px-16 md:px-8 sm:px-8 my-8">
-      <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
-        <div className="w-1/2 px-4 flex items-center justify-center">
-          <PostForm body="Your Secret" expired_at="2 hrs" />
-        </div>
-
-        <div className="w-1/2 p-6 my-4">
+        <div className="w-1/2 sm:w-full px-4">
           <div className="md:flex md:items-center mb-6">
-            <ChatBot />
+            <img className="w-1/2" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg" />
           </div>
         </div>
       </div>

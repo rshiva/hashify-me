@@ -4,11 +4,11 @@ module Generator
 
   class_methods do
     
-    def ciphered(post_params)
-      Ciphering.new(post_params[:body], post_params[:salty_password] || "").encrypt
+    def ciphered(body, salty_password)
+      Ciphering.new(body, salty_password ).encrypt
     end
 
-    def generate_salt(salty_password = "")
+    def generate_salt(salty_password)
       @salt = BCrypt::Password.create(salty_password)
     end
 

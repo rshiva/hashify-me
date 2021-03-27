@@ -1,21 +1,24 @@
 import * as React from "react";
 import { useState, useRef } from "react";
+import { trackEvent } from '../analytics';
 
 interface PostProps {
   body: string;
   salty_password?: string;
   expired_at: string;
   url_token?: string;
+  has_salt: boolean;
 }
 
-const PostForm: React.FC<PostProps> = (props: PostProps) => {
+const PostForm: React.FC<PostProps> = (props) => {
   const [post, setPost] = useState(props);
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
+  const [copyMessage, setMessage] = useState("");
   const form = useRef(null);
+  const clipboard = useRef(null);
 
-  const createPost = async (post) => {
-    console.log(post);
+  const createPost = async (post: PostProps) => {
     var response = await fetch("/v1/posts", {
       method: "POST",
       headers: {
@@ -30,25 +33,45 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
     }
   }
 
-  function submitForm(ev) {
+  function submitForm(ev: React.FormEvent) {
     ev.preventDefault();
     createPost(post).then((response) => {
       setStatus('success');
       setPost(response.data);
+      trackEvent("Secret created - Success");
       return response.data;
     }).catch(error => {
       setError(error);
+      trackEvent("Secret created - Error");
       console.error(error);
     })
   }
 
+  const copyToClipboard = () => {
+    window.getSelection().removeAllRanges();
+    const range = document.createRange();
+    range.selectNode(clipboard.current);
+    window.getSelection().addRange(range);
+
+    try {
+      const successful = document.execCommand('copy');
+      const message = successful ? 'successfully' : 'unsuccessfully';
+      trackEvent("Message copied - Success");
+      setMessage('The url was copied ' + message + '.');
+    } catch (err) {
+      trackEvent("Message copied - Error");
+      setMessage('Oops, unable to copy');
+    }
+    window.getSelection().removeAllRanges();
+  };
+
   return (
     <>
       {status !== "success" ?
-        <form className="max-w-sm" ref={form} onSubmit={submitForm}>
+        <form className="w-full" ref={form} onSubmit={submitForm}>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-xl sm:text-xl md:text-right mb-1 md:mb-0 pr-4">
                 Secret
                   </label>
             </div>
@@ -56,27 +79,38 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
               <textarea
                 name="post[body]"
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
-                placeholder={props.body}
+                placeholder="Your message goes here.."
+                rows={5}
                 cols={20}
                 value={post.body}
+                required
                 onChange={(ev) => setPost({ ...post, body: ev.target.value })}
               />
             </div>
           </div>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
-                Passcode <br /> ( optional )
-                  </label>
+              <label className="block text-black md:text-xl sm:text-xl font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Passcode <br /> ( Enable ) &nbsp;
+                <input
+                  name="post[has_salt]"
+                  type="checkbox"
+                  checked={post.has_salt}
+                  onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
+                    setPost({ ...post, has_salt: ev.target.checked })
+                  } />
+              </label>
             </div>
             <div className="md:w-2/3">
               <input
                 type="text"
                 name="post[salty_password]"
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
-                placeholder="Your salt"
+                placeholder="Your Passcode"
                 value={post.salty_password}
-                onChange={(ev) =>
+                required={post.has_salt}
+                disabled={!post.has_salt}
+                onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
                   setPost({ ...post, salty_password: ev.target.value })
                 }
               />
@@ -84,7 +118,7 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
           </div>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4">
+              <label className="block text-black font-bold md:text-xl sm:text-xl md:text-right mb-1 md:mb-0 pr-4">
                 Expires in
                   </label>
             </div>
@@ -97,9 +131,9 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
                 }
                 className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
               >
-                <option value="2 hrs">2 hrs</option>
-                <option value="12 hrs">12 hrs</option>
-                <option value="24 hrs">24 hrs</option>
+                <option value="2">2 hrs</option>
+                <option value="12">12 hrs</option>
+                <option value="24">24 hrs</option>
               </select>
             </div>
           </div>
@@ -110,7 +144,14 @@ const PostForm: React.FC<PostProps> = (props: PostProps) => {
             </div>
           </div>
         </form> :
-        <p>Post: {post.url_token}</p>
+        <div>
+          <h3 className="py-4 font-lg">Shareable URL:</h3>
+          <div className="border-2 border-black p-6 rounded-lg">
+            <p className="pb-2" ref={clipboard}>{`https://hashify.app/secret/${post.url_token}`}</p>
+            <button onClick={copyToClipboard} className="btn-primary pt-2">Copy to Clipboard</button>
+            {copyMessage !== "" && <p className="pt-2">{copyMessage}</p>}
+          </div>
+        </div>
       }
     </>
   );

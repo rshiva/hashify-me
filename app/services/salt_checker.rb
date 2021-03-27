@@ -1,8 +1,8 @@
 class SaltChecker
 
-  def initialize(encrypted_salt,salt)
-    @salt = salt || '' 
-    @encrypted_salt = encrypted_salt
+  def initialize(post,salt)
+    @salt = post["has_salt"] ? salt : ''
+    @encrypted_salt = post["salty_password"]
   end
 
   def call

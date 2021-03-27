@@ -4,6 +4,7 @@ Rails.application.routes.draw do
                             invitations: 'users/invitations' }
   
   get 'slack', to: "slack#index"
+  get 'slack/authorization', to: "slack#authorization"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:create] do
         member do
           get 'reveal'
+          post 'reveal_post'
         end
       end
 

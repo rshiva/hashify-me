@@ -11,30 +11,33 @@ class Post
   # expired_at     mandatory
   # created_at     
   # updated_at
-  attr_accessor :url_token, :body, :salty_password, :expired_at, :created_at, :updated_at
+  attr_accessor :url_token, :body, :salty_password, :expired_at, :created_at, :updated_at, :has_salt
 
   validates :body, presence: true
   validates :expired_at, presence: true
+  validates :expired_at, inclusion: { in: (EXPIRE_IN.map {|n| n*60*60}), message: "is not a valid time" }
 
   def self.create(post_params)
     post = new.tap do |p|
-      p.body = self.ciphered(post_params)
-      p.expired_at = time_to_sec(EXPIRE_IN[post_params[:expired_at].to_i]) if post_params[:expired_at]
-      p.salty_password = self.generate_salt(post_params[:salty_password])
+      salty_password = post_params[:has_salt] ? post_params[:salty_password] : ''
+      p.body = self.ciphered(post_params[:body], salty_password)
+      p.expired_at = time_to_sec(post_params[:expired_at].to_i)
+      p.salty_password = self.generate_salt(salty_password)
+      p.has_salt = post_params[:has_salt]
       p.url_token = self.generate_url_token
     end
     if post.valid?
       $redis.set(post.url_token, post.to_json, ex: post.expired_at)
-      post
     end
+    post
   end
 
 
   protected
 
-  def self.serializer(post)
+  # def self.serializer(post)
     
-  end
+  # end
 
 
 end
