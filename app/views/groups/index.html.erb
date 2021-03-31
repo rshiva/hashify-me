@@ -1,0 +1,12 @@
+<h2>Now share secret with a group</h2>
+<% if @groups %>
+  <% @groups.each do |group| %>
+    Group list:
+    <%= link_to group.name, group%>
+  <% end %>
+
+<% else %>
+  <strong>
+    You haven't created a group yet
+  </strong>
+<% end %>

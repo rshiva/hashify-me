@@ -1,0 +1,13 @@
+<% if @users %>
+  <h2> List of users in this group <h2>
+  <% @users.each do |user| %>
+        <%= user.email %>
+  <% end %>
+<% else %>
+  <strong> 
+    No users in this group yet
+    <%= link_to "Create Group", groups_path, method: :post%>
+  </strong>
+<% end %>
+<br>
+<%= link_to "Create Group", new_group_path%>
