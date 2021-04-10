@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_admin, only: [:index, :show]
+  before_action :authenticate_admin
 
   def index
     @groups = Group.where(group_admin_id: current_user)
