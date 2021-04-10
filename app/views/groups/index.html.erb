@@ -1,6 +1,6 @@
 <h2>Now share secret with a group</h2>
 <% if @groups %>
-  Group list:
+    <%= title_group(current_user) %>
   <% @groups.each do |group| %>
     <li><%= link_to group.name, group%></li>
   <% end %>
@@ -11,4 +11,6 @@
   </strong>
 <% end %> 
 <br>
-<%= link_to "Create Group", new_group_path%>
+<% if current_user.has_role? :admin %>
+  <%= link_to "Create Group", new_group_path %>
+<% end %>

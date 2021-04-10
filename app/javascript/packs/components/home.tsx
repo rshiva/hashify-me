@@ -16,7 +16,8 @@ export const Home: React.FC = () => (
       </h1>
       <div className="flex flex-wrap -my-8 -mx-1 lg:-mx-2 sm:w-100">
         <div className="w-1/2 sm:w-full px-4 flex items-center justify-center">
-          <PostForm body="" expired_at="2 hrs" has_salt={false} salty_password={""} />
+          <PostForm body="" expired_at="2 hrs" has_salt={false} salty_password={""}
+                    group_selected={false} group_id={0} created_by={0} />
         </div>
 
         <div className="w-1/2 sm:w-full p-6 my-4">

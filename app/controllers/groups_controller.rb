@@ -1,12 +1,17 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_admin
+  before_action :authenticate_admin, except: [:index]
+  before_action :authorize, only: [:index]
 
   def index
-    @groups = Group.where(group_admin_id: current_user)
+    if current_user.has_role?(:admin)
+      @groups = Group.where(admin_id: current_user).order(:created_at)
+    else
+      @groups = current_user.groups
+    end
   end
 
   def create
-    @group = Group.new(group_params.merge!(group_admin_id: current_user.id))
+    @group = Group.new(group_params.merge!(admin_id: current_user.id))
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group }
@@ -58,6 +63,6 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:name, :group_admin_id)
+    params.require(:group).permit(:name, :admin_id)
   end
 end

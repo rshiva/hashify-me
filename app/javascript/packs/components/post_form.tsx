@@ -8,6 +8,9 @@ interface PostProps {
   expired_at: string;
   url_token?: string;
   has_salt: boolean;
+  group_selected: boolean;
+  group_id: number;
+  created_by: number;
 }
 
 const PostForm: React.FC<PostProps> = (props) => {
@@ -15,6 +18,7 @@ const PostForm: React.FC<PostProps> = (props) => {
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
   const [copyMessage, setMessage] = useState("");
+  const [groupChecked, setGroupChecked] = useState(false);
   const form = useRef(null);
   const clipboard = useRef(null);
 
@@ -86,6 +90,30 @@ const PostForm: React.FC<PostProps> = (props) => {
                 required
                 onChange={(ev) => setPost({ ...post, body: ev.target.value })}
               />
+            </div>
+          </div>
+          {/* Only to logged in user and if that user belongs to group 
+          we will show this option*/}
+          <div className="md:flex md:items-center mb-6">
+            <div className="md:w-1/3">
+              <div className="md:w-1/3">
+                <label className="block text-black md:text-xl sm:text-xl font-bold md:text-right mb-1 md:mb-0 pr-4">
+                  Send to Group
+                  <input type="checkbox" 
+                         name="post[group_selected]" 
+                         onChange={() => setGroupChecked(!groupChecked)}
+                          checked={groupChecked}
+                         id=""/>
+                  <br/>
+                  {
+                  groupChecked ? (
+                    <input className="appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-middle-blue-green"
+                            name="post[group_name]" type="text" 
+                            placeholder="Enter group name"/>
+                    ) : (<div></div>)
+                  }
+                </label>
+              </div>
             </div>
           </div>
           <div className="md:flex md:items-center mb-6">

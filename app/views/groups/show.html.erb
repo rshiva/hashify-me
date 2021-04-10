@@ -15,7 +15,9 @@
 <% end %>
 <br>
 
-<%= form_tag user_group_path, method: :post do |f|%>
-<%= text_field_tag :email %>
-<%= submit_tag "Add User in #{@group.name}" %>
+<% if current_user.has_role? :admin %>
+  <%= form_tag user_group_path, method: :post do |f|%>
+  <%= text_field_tag :email %>
+  <%= submit_tag "Add User in #{@group.name}" %>
+  <% end %>
 <% end %>

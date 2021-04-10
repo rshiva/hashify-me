@@ -16,5 +16,8 @@ class User < ApplicationRecord
 
   delegate :name, to: :account, prefix: true
 
-  
+
+  def is_member?(group_id)
+    memberships.exists?(group_id: group_id)
+  end
 end

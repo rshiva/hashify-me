@@ -25,6 +25,10 @@ class Post
       p.salty_password = self.generate_salt(salty_password)
       p.has_salt = post_params[:has_salt]
       p.url_token = self.generate_url_token
+      if post_params[:created_by]
+        p.created_by = post_params[:created_by]
+        p.group_id = post_params[:group_id]
+      end
     end
     if post.valid?
       $redis.set(post.url_token, post.to_json, ex: post.expired_at)

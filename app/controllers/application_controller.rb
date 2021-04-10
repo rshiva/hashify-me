@@ -4,10 +4,18 @@ class ApplicationController < ActionController::Base
 
 
   def authenticate_admin
-    logged_in? && current_user.has_role?(:admin)
+    unless logged_in? && current_user.has_role?(:admin)
+      redirect_to root_url, notice: "Access denied"
+    end
   end
 
   def logged_in?
     !!current_user
+  end
+
+  def authorize
+   unless logged_in?
+    redirect_to root_url, notice: "Please login"
+   end
   end
 end
