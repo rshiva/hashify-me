@@ -1,7 +1,11 @@
 <% if @users %>
-  <h2> List of users in this group <h2>
+  <h2> List of users in <%= @group.name %> group <h2>
+  <br>
   <% @users.each do |user| %>
-        <%= user.email %>
+        <li><%= user.email %>
+        <%= link_to  "Remove", remove_user_group_path(@group, user_id: user.id), method: :post%>
+        </li>
+
   <% end %>
 <% else %>
   <strong> 
@@ -10,4 +14,8 @@
   </strong>
 <% end %>
 <br>
-<%= link_to "Create Group", new_group_path%>
+
+<%= form_tag user_group_path, method: :post do |f|%>
+<%= text_field_tag :email %>
+<%= submit_tag "Add User in #{@group.name}" %>
+<% end %>
