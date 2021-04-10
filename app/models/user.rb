@@ -7,9 +7,6 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :groups, :through => :memberships
   
-  # has_one :group
-  
-
   has_many :invitations, class_name: 'User', as: :invited_by
 
   devise :invitable, :database_authenticatable, :registerable,
