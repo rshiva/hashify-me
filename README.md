@@ -52,6 +52,10 @@ Foreman plays much nicer with environment vars across react and rails.
 | GET | localhost:3000/v1/posts/:id/reveal?salty_password | id: post_id |  Need to pass the post id and secret salt to reveal the secret message
 | GET | localhost:3000/v1/secret?token= | token= "5c07673c12146d7e2246" | Pass the url token to land on the above reveal page, this can be used to share the url
 
+### ERD
+
+![Alt models](./doc/models_complete.svg)
+
 ### Todos
 
 - [ ] Write MORE Tests

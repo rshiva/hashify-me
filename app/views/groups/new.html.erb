@@ -1,0 +1,5 @@
+<%= form_for(@group , remote: false) do |f| %>
+<%= f.label :group_name%>
+<%= f.text_field :name%>
+<%= f.submit :create%>
+<% end %>

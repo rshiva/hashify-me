@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HashifyMe</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-  </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<head>
+  <title>HashifyMe</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+  <% if user_signed_in? %>
+    Logged in as <strong><%= current_user.email %></strong>.
+    <%= link_to 'Edit profile', edit_user_registration_path %> |
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% if  current_user.has_role? :admin %>
+      | <%= link_to "Invite Users", new_user_invitation_path%>
+      | <%= link_to "Groups", groups_path %>
+    <% elsif current_user %>
+      | <%= link_to "Groups", groups_path %>
+    <% end %>
+  <% else %>
+      <%= link_to "Sign up", new_user_registration_path %> |
+      <%= link_to "Login", new_user_session_path %>
+  <% end %>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+</head>
+
+<body>
+  <%= yield %>
+</body>
+
 </html>

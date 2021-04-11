@@ -1,0 +1,23 @@
+<% if @users %>
+  <h2> List of users in <%= @group.name %> group <h2>
+  <br>
+  <% @users.each do |user| %>
+        <li><%= user.email %>
+        <%= link_to  "Remove", remove_user_group_path(@group, user_id: user.id), method: :post%>
+        </li>
+
+  <% end %>
+<% else %>
+  <strong> 
+    No users in this group yet
+    <%= link_to "Create Group", groups_path, method: :post%>
+  </strong>
+<% end %>
+<br>
+
+<% if current_user.has_role? :admin %>
+  <%= form_tag user_group_path, method: :post do |f|%>
+  <%= text_field_tag :email %>
+  <%= submit_tag "Add User in #{@group.name}" %>
+  <% end %>
+<% end %>

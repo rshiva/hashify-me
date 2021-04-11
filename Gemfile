@@ -23,6 +23,10 @@ gem 'redis'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rack-throttle'
 gem 'jsonapi-serializer'
+gem 'devise'
+gem 'rolify'
+gem 'devise_invitable', '~> 2.0.0'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -39,6 +43,7 @@ end
 
 group :test do
   gem 'database_cleaner-active_record'
+  gem 'shoulda-matchers', '~> 4.0'
 end
 
 group :development, :test do
@@ -51,10 +56,12 @@ group :development, :test do
 end
 
 group :development do
+  gem 'railroady'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'letter_opener'
 end

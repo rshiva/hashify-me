@@ -1,0 +1,16 @@
+<h2>Now share secret with a group</h2>
+<% if @groups %>
+    <%= title_group(current_user) %>
+  <% @groups.each do |group| %>
+    <li><%= link_to group.name, group%></li>
+  <% end %>
+
+<% else %>
+  <strong>
+    You haven't created a group yet
+  </strong>
+<% end %> 
+<br>
+<% if current_user.has_role? :admin %>
+  <%= link_to "Create Group", new_group_path %>
+<% end %>

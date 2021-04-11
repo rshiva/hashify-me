@@ -4,7 +4,15 @@ class Api::V1::PostsController < ApplicationController
 
   def create
     render json: {error: {error_type: "validation", error_message: "params missing"}}, status: 422 and return if post_params[:body].empty?
-    post = Post.create(post_params)
+    if current_user && current_user.id == post_params[:created_by]
+      if post_params[:group_selected] && current_user.is_member?(post_params[:group_id])
+        post = Post.create(post_params)
+      else
+        render json: {error: {error_type: "validation", error_message: "You don't belong to this group"}}, status: 422
+      end
+    else
+      post = Post.create(post_params)
+    end
     if post.valid? 
       post_hash = PostSerializer.new(post).serializable_hash
       render json: {data: post_hash[:data][:attributes]}, status: 200
@@ -54,7 +62,10 @@ class Api::V1::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:id, :body, :salty_password, :url_token, :expired_at, :has_salt)
+    params.require(:post)
+    .permit(:id, :body, :salty_password, :url_token,
+            :expired_at, :has_salt, :group_selected, :group_id,
+            :created_by)
   end
 
   def find_post
