@@ -46,10 +46,10 @@ class GroupsController < ApplicationController
 
   def remove_user
     @user = User.find(params[:user_id])
-    @membership = @user.memberships.where(group_id: params[:id]).last
+    @group = Group.find(params[:id])
     respond_to do |format|
-      if @membership
-        @membership.destroy
+      if @user && @group
+        @user.groups.delete(@group)
         format.html { redirect_to groups_path, notice: "User removed from group successfully" }
       else
         format.html { redirect_to @group, notice: "User not found" }
